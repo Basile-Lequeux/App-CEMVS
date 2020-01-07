@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Bienvenue sur le site de l'EMVS{% endblock %}
+
+{% block body %}
+   <div class="container mt-3">
+   
+    {% if entrainement != false %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="jumbotron">
+                    <h1 class="display-3 text-center">Entrainement en cours <img src="https://static.thenounproject.com/png/16708-200.png" width="50" height="50"></h1>
+                    <p class="lead text-center">Le cours a lieu de <b>{{entrainement.dateStart|date('H:m:s')}}</b> jusqu'a <b>{{entrainement.dateEnd|date('H:m:s')}}</b>.</p>
+                
+                    <hr class="my-4">
+                    {{ form_start(form)}}
+                    <div class="text-center">
+                        {{ form_label(form.user, null, {'label_attr': {'style': 'font-size:22px;'}}) }}
+                    </div>
+                    {{ form_widget(form.user)}}
+                        <hr>
+                        <button type="submit" class="btn btn-success btn-block btn-lg" style="padding:15px;" >Valider la présence du tireur</button>
+                    {{ form_end(form)}}
+                </div>
+                {% if app.user %}
+                    {% for present in entrainement.users %}
+                        {% if present.user.username == app.user.username %}
+                            {% for lecon in entrainement.lecons %}
+                                {% if lecon.user == app.user %}
+                                    <div class="row rounded">
+                                        <div class="col-md-12"><h4 class="text-center bg-light " style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Leçons</h4></div>
+                                        <div class="col-md-6">
+                                            <button type="buton" class="btn btn-success btn-block">J'ai reçu une leçon durant cette entrainement</button>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <h5 class="text-center"> Informations Leçon </h5>
+                                            <p><b>Maitre d'armes: </b>{{lecon.maitreArme}}</p>
+                                            <p><b>Remarque(s): </b><br>{{lecon.informations}}</p>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <button type="buton" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModal">J'ai reçu une leçon</button>
+                                {% endif %}
+                            
+                            {% endfor %}
+                            
+                        <button type="buton" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModal">J'ai reçu une leçon</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                {{form_start(formLecon)}}
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Informations Leçon</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body form-group">
+                                            <div class="text-center">
+                                                {{ form_label(formLecon.rawMaitre, null, {'label_attr': {'style': 'font-size:18px;'}}) }}
+                                                {{form_widget(formLecon.rawMaitre)}}
+                                                {{ form_label(formLecon.informations, null, {'label_attr': {'style': 'font-size:18px;'}}) }}
+                                                {{form_widget(formLecon.informations)}}
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                                        </div>
+                                    </div>
+                                {{form_end(formLecon)}}
+                            </div>
+                            </div>
+                            
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <div class="jumbotron">
+                    <h1 class="text-center mt-5 bg-primary" style="color:#fff;padding:20px;">Présence Validée <i class="fas fa-check"></i></h1>
+                    <ul class="list-group">
+                        {% for present in entrainement.users %}
+                            <li class="list-group-item text-center" style="font-size:18px;"><b>{{present.user.username}} <i class="far fa-check-square" style="color:green"></i></b> </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h1 class="display-3 text-center">Pas d'entrainement en cours</h1>
+        <p class="lead text-center">Il n'y a actuellement pas d'entrainement en cours, les entrainements ont lieu du mardi au vendredi à 17H.</p>
+        <hr class="my-4">
+        <button class="btn btn-primary ">En savoir plus </button>
+    {% endif %}
+    
+    
+   </div>
+{% endblock %}
+

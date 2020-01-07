@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Competitions index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des compétitions</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date de Debut</th>
+                    <th>Date de Fin</th>
+                    <th>Arme</th>
+                    <th>Nbre Participants</th>
+                    <th>Blason Conseillé</th>
+                    <th>Catégorie</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for competition in competitions %}
+                <tr>
+                    <td>{{ competition.id }}</td>
+                    <td>{{ competition.dateStart ? competition.dateStart|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ competition.dateEnd ? competition.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ competition.arme }}</td>
+                    <td>{{ competition.participants }}</td>
+                    <td>{{ competition.blason }}</td>
+                    <td>{{ competition.categorieAge }}</td>
+                    <td>
+                        <a type="button" class="btn btn-primary" href="{{ path('competitions_show', {'id': competition.id}) }}">Afficher</a>
+                        <a type="button" class="btn btn-warning" href="{{ path('competitions_edit', {'id': competition.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a type="button" class="btn btn-success btn-block" href="{{ path('competitions_new') }}">Nouvelle compétition</a>
+    </div>
+{% endblock %}

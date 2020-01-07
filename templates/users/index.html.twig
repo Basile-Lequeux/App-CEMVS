@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+<div class="container">
+        <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des utilisateurs</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date Création</th>
+                    <th>Nom Utilisateur</th>
+                    <th>Role</th>
+                    <th>Genre</th>
+                    <th>Blason</th>
+                    <th>Groupe</th>
+                    <th>Arbitre</th>
+                    <th>Arme</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ user.username ? user.username : '' }}</td>
+                    <td>{{ user.role ? user.role : '' }}</td>
+                    <td>{{ user.genre ? user.genre : '' }}</td>
+                    <td>{{ user.blason ? user.blason : '' }}</td>
+                    <td>{{ user.groupe.id ? user.groupe.nom : '' }}</td>
+                    <td>{{ user.arbitre.id ? user.arbitre.niveauArbitre : '' }}</td>
+                    <td>{{ user.arme.id ? user.arme.arme : '' }}</td>
+                    
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Pas d'entrainements</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a type="button" class="btn btn-success btn-block" href="{{ path('inscription') }}">Créer un utilisateur</a>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}UserObjectifs{% endblock %}
+
+{% block body %}
+    <h1>UserObjectifs</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user_objectif.id }}</td>
+            </tr>
+            <tr>
+                <th>Objectif</th>
+                <td>{{ user_objectif.objectif }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_objectifs_index') }}">back to list</a>
+
+    <a href="{{ path('user_objectifs_edit', {'id': user_objectif.id}) }}">edit</a>
+
+    {{ include('user_objectifs/_delete_form.html.twig') }}
+{% endblock %}

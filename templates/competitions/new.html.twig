@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Competitions{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Créer une nouvelle compétition</h1>
+
+    {{ include('competitions/_form.html.twig') }}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entrainement index{% endblock %}
+
+{% block body %}
+   <div class="container">
+        <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des entrainements</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Date Debut</th>
+                    <th>Date Fin</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entrainement in entrainements %}
+                <tr>
+                    <td>{{ entrainement.id }}</td>
+                    <td>{{ entrainement.dateStart ? entrainement.dateStart|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ entrainement.dateEnd ? entrainement.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        {% for groupe in entrainement.groupes %}
+                            <p>{{groupe.nom}}</p>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a type="button" href="{{ path('entrainement_show', {'id': entrainement.id}) }}" class="btn btn-primary">Afficher</a>
+                        <a type="button" href="{{ path('entrainement_edit', {'id': entrainement.id}) }}" class="btn btn-warning">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Pas d'entrainements</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a type="button" class="btn btn-success btn-block" href="{{ path('entrainement_new') }}">Créer un nouvel entrainement</a>
+   </div>
+{% endblock %}

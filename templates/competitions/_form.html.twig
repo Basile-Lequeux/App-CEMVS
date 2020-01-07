@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+<div class="row">
+    <div class="col">
+        <a type="button" class="btn btn-primary btn-block" href="{{ path('competitions_index') }}">Retour <i class="fas fa-backward"></i></a>
+    </div>
+    <div class="col">
+        <button class="btn btn-success btn-block">{{ button_label|default('Enregistrer') }} <i class="fas fa-check"></i></button>
+    </div>
+</div>
+
+{{ form_end(form) }}

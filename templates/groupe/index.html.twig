@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groupe index{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des goupes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for groupe in groupes %}
+            <tr>
+                <td>{{ groupe.id }}</td>
+                <td>{{ groupe.nom }}</td>
+                <td>
+                    <a type="button" class="btn btn-primary" href="{{ path('groupe_show', {'id': groupe.id}) }}">Afficher</a>
+                    <a type="button" class="btn btn-warning" href="{{ path('groupe_edit', {'id': groupe.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas de groupes enregistrés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a type="button" class="btn btn-success btn-block" href="{{ path('groupe_new') }}">Créer nouveau</a>
+</div>
+{% endblock %}

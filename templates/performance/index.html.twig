@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos Perfomances{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des perfomances</h1>
+
+   <canvas id="myChart" width="200" height="100"></canvas>
+   <canvas id="engagement" width="200" height="100"></canvas>
+   <canvas id="pie-chart" width="200" height="100"></canvas>
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="/js/charts/graph.js"></script>
+    <script> 
+  
+    getGraphPerformance({{perfCompetitions|json_encode|raw}});
+    getGraphEngagement({{engagement|json_encode|raw}})
+    getGraphAssiduite({{assiduite|json_encode|raw}})
+    </script>
+{% endblock %}
