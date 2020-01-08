@@ -41,6 +41,11 @@ class Groupe
         $this->entrainements = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return (string) $this->nom;
+    }
+
 
     public function getId(): ?int
     {

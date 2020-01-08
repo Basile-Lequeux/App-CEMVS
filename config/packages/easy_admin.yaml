@@ -3,7 +3,23 @@ easy_admin:
     entities:
         User:
             class: App\Entity\User
+            list: 
+                fields: ['username','groupe']
+            edit: 
+                fields: ['username','groupe.nom']
         Entrainement:
             class: App\Entity\Entrainement
         Competitions:
             class: App\Entity\Competitions
+        CompetitionsUser:
+            class: App\Entity\CompetitionsUser
+        EntrainementUser:
+            class: App\Entity\EntrainementUser
+        Groupe:
+            class: App\Entity\Groupe
+            edit:
+                fields: ['nom',{property: 'users', type_option: {'by_reference': false}}]
+        Lecon:
+            class: App\Entity\Lecon
+        UserArbitre:
+            class: App\Entity\UserArbitre

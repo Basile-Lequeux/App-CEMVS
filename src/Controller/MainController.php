@@ -120,7 +120,8 @@ class MainController extends AbstractController
         $element = $manager->getRepository(Competitions::class);
         $competitionsRevolues = $actions->getCompetitionsRevolues($element,$this->getUser());
         $tableauCompetitionUser = array();
-        $val = array($competitionsRevolues[0]->getUsers());
+
+        //$val = array($competitionsRevolues[0]->getUsers());
 
         for($i=0; $i<sizeof($competitionsRevolues); $i++){
             $val = $competitionsRevolues[$i]->getUsers();

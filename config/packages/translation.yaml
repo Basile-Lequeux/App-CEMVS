@@ -1,4 +1,5 @@
 # config/packages/translation.yaml
 framework:
     translator:
-        fallbacks: [ "fr" ]
+        fallbacks: [ "en" ]
+        

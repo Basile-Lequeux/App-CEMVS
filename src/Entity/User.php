@@ -121,7 +121,10 @@ class User implements UserInterface
          $this->competitions = new ArrayCollection();
      }
     
-
+    public function __toString()
+    {
+        return (string) $this->username;
+    }
 
     /**
      * Assert\Callback()
@@ -449,6 +452,7 @@ class User implements UserInterface
 
          return $this;
      }
+
 
 
 }
