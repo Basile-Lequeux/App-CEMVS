@@ -5,8 +5,11 @@ easy_admin:
             class: App\Entity\User
             list: 
                 fields: ['username','groupe']
-            edit: 
-                fields: ['username','groupe.nom']
+            form:
+                fields:
+                    - {property : 'username'}
+                    - {property : 'groupe'}
+                
         Entrainement:
             class: App\Entity\Entrainement
         Competitions:
@@ -17,8 +20,11 @@ easy_admin:
             class: App\Entity\EntrainementUser
         Groupe:
             class: App\Entity\Groupe
-            edit:
-                fields: ['nom',{property: 'users', type_option: {'by_reference': false}}]
+            form:
+                fields:
+                - {property : 'nom'}
+                - {property : 'users'}
+
         Lecon:
             class: App\Entity\Lecon
         UserArbitre:
