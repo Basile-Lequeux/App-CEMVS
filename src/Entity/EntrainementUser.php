@@ -34,9 +34,12 @@ class EntrainementUser
      * @ORM\JoinColumn(nullable=false)
      */
     private $entrainements;
-
+  
     
-
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
 
     public function getId(): ?int
     {
@@ -55,6 +58,7 @@ class EntrainementUser
         return $this;
     }
 
+    
     public function getUser(): ?User
     {
         return $this->user;
@@ -78,6 +82,8 @@ class EntrainementUser
 
         return $this;
     }
+
+
 
 
 }

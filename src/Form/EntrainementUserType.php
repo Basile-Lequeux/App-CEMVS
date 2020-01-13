@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 
 class EntrainementUserType extends AbstractType
@@ -30,6 +31,7 @@ class EntrainementUserType extends AbstractType
                     'style' => 'background-color:#fff;font-size:18px;'
                 ]
             ])
+                    
         ;
     }
 

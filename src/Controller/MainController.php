@@ -18,6 +18,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Common\Collections\Collection;
 
 
 class MainController extends AbstractController
@@ -34,19 +35,34 @@ class MainController extends AbstractController
             $entrainement[0] = false;
         }else{
             $tableUser = array();
+            $tableGroupe = array();
+            $tablePresent = array();
+
+            foreach ($entrainement[0]->getUsers() as $userE) 
+            {
+                $userarray = array($userE->getUser());// Convertion de l'objet en tableau afin de pouvour le comparer à $tableGroupe qui retrounera Une Collection de User donc un tableau
+            
+                array_push($tablePresent, $userarray[0]);                                     
+            }
+                   
+             
             foreach($entrainement[0]->getGroupes() as $groupe)
             {
                 foreach($groupe->getUsers() as $user){
-                    array_push($tableUser, $user);
+                
+                array_push($tableGroupe, $user);
+                                                                                                                                         
                 }
-            }
+            } $tableUser = array_diff($tableGroupe, $tablePresent);
+
             $entrainementUser= new EntrainementUser();
             $form = $this->createForm(EntrainementUserType::class, $entrainementUser,array(
                 'users' => $tableUser,
             ));
             $form->handleRequest($request);
+         
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted() && $form->isValid()){
                 $entrainementUser->setEntrainements($entrainement[0]);
                 $entrainementUser->setPresent(true);
                 $manager->persist($entrainementUser);
@@ -76,6 +92,7 @@ class MainController extends AbstractController
                 "entrainement" => $entrainement[0],
                 "form" => $form->createView(),
                 "formLecon" => $formLecon->createView(),
+
             ]);
         }
         return $this->render('main/index.html.twig',[
