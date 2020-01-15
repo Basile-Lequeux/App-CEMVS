@@ -6,12 +6,14 @@ easy_admin:
         User:
             class: App\Entity\User
             list: 
-                fields: ['Id','username','groupe','DateNaissance','role']
+                fields: ['Id','username','groupe','DateNaissance','nom','prenom']
             form:
                 fields:
                     - {property : 'username'}
                     - {property : 'groupe'}
-                    - {property : 'role'}
+                    - {property : 'Nom'}
+                    - {property : 'prenom'}
+
 
                 
         Entrainement:

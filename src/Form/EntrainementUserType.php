@@ -21,7 +21,11 @@ class EntrainementUserType extends AbstractType
             ->add('user', ChoiceType::class,[
                 'choices'=>$options['users'],
                 'choice_label'=> function($choice){
-                    return $choice?$choice->getUsername():'';
+
+                    $nomTireur = $choice->getPrenom();
+                    $nomTireur .= ' '.$choice->getNom();
+
+                    return $nomTireur;
                 },
                 'multiple'  => false,
                 'required' => true,

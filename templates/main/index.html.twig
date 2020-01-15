@@ -82,7 +82,7 @@
                     <h1 class="text-center mt-5 bg-primary" style="color:#fff;padding:20px;">Présence Validée <i class="fas fa-check"></i></h1>
                     <ul class="list-group">
                         {% for present in entrainement.users %}
-                            <li class="list-group-item text-center" style="font-size:18px;"><b>{{present.user.username}} <i class="far fa-check-square" style="color:green"></i></b> </li>
+                            <li class="list-group-item text-center" style="font-size:18px;"><b>{{present.user.prenom}} {{present.user.Nom}}<i class="far fa-check-square" style="color:green"></i></b> </li>
                         {% endfor %}
                     </ul>
                 </div>

@@ -20,7 +20,10 @@ class LeconType extends AbstractType
                 'label' => 'Nom du Maitre d\'armes',
                 'choices'=>$options['maitreArmes'],
                 'choice_label'=> function($choice){
-                    return $choice?$choice->getUsername():'';
+                    $MaitreArme = $choice->getprenom();
+                    $MaitreArme .= ' '.$choice->getnom();
+
+                    return $MaitreArme;
                 },
                 'choice_value'=> function($choice){
                     return $choice?$choice->getUsername():'';
