@@ -109,6 +109,11 @@ class User implements UserInterface
       */
      private $arbitre;
 
+     /**
+      * @ORM\Column(type="date", nullable=true)
+      */
+     private $DateNaissance;
+
      
 
      
@@ -458,6 +463,18 @@ class User implements UserInterface
      public function setArbitre(?UserArbitre $arbitre): self
      {
          $this->arbitre = $arbitre;
+
+         return $this;
+     }
+
+     public function getDateNaissance(): ?\DateTimeInterface
+     {
+         return $this->DateNaissance;
+     }
+
+     public function setDateNaissance(?\DateTimeInterface $DateNaissance): self
+     {
+         $this->DateNaissance = $DateNaissance;
 
          return $this;
      }

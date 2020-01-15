@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class UserType extends AbstractType
 {
@@ -50,6 +51,19 @@ class UserType extends AbstractType
                     'style' => 'background-color:#fff;font-size:15px;'
                 ],
             ])
+            ->add('dateNaissance', BirthdayType::class, [
+                'attr'=>[
+                    'class' => 'custom-select text-center mb-3',
+                    
+
+                    
+                    
+                ],
+                'placeholder' => [
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                ] 
+
+                ])
             ->add('blason',ChoiceType::class,[
                 "choices" => [
                     'Blason Jaune' => 'Jaune',
@@ -127,6 +141,7 @@ class UserType extends AbstractType
                 }
                 
             ))
+            
         ;
     }
 

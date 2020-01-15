@@ -51,6 +51,7 @@ class AdminFixture extends Fixture
         $adminf->setGroupe($fgroupe);
         $adminf->setCategorieAge('Seniors');
         $adminf->setArme($armef);
+        $adminf->setdateNaissance( new \DateTime("2020-01-06 00:00:00"));
 
         //user tireur
         $tireurf = new user();
