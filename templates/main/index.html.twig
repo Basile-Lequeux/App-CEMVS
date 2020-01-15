@@ -30,16 +30,16 @@
                                     <div class="row rounded">
                                         <div class="col-md-12"><h4 class="text-center bg-light " style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Leçons</h4></div>
                                         <div class="col-md-6">
-                                            <button type="buton" class="btn btn-success btn-block">J'ai reçu une leçon durant cette entrainement</button>
+                                            
                                         </div>
-                                        <div class="col-md-6 text-center">
-                                            <h5 class="text-center"> Informations Leçon </h5>
+                                        <div class="container text-center">
+                                            <h5> Informations Leçon </h5>
                                             <p><b>Maitre d'armes: </b>{{lecon.maitreArme}}</p>
                                             <p><b>Remarque(s): </b><br>{{lecon.informations}}</p>
                                         </div>
                                     </div>
                                 {% else %}
-                                    <button type="buton" class="btn btn-info btn-block" data-toggle="modal" data-target="#exampleModal">J'ai reçu une leçon</button>
+                                    
                                 {% endif %}
                             
                             {% endfor %}

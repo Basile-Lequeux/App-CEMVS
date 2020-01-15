@@ -68,8 +68,15 @@ class GroupeController extends AbstractController
     {
         $form = $this->createForm(GroupeType::class, $groupe);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($groupe->getusers() as $user) 
+            {
+                $user->setgroupe($groupe);
+            }          
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('groupe_index', [

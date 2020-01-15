@@ -23,7 +23,7 @@ class LeconType extends AbstractType
                     return $choice?$choice->getUsername():'';
                 },
                 'choice_value'=> function($choice){
-                    return $choice?$choice->getId():'';
+                    return $choice?$choice->getUsername():'';
                 },
                 'multiple'  => false,
                 'attr'=>[

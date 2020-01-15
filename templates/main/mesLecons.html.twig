@@ -18,8 +18,8 @@
             {% for lecon in lecons %}
                 <tr>
                     <td>Lecon reçue entre le <b>{{lecon.entrainement.dateStart|date('d/m/Y')}}</b> à <b>{{lecon.entrainement.dateStart|date('h-m')}}</b> et <b>{{lecon.entrainement.dateEnd|date('d/m/Y')}}</b> à <b>{{lecon.entrainement.dateEnd|date('h:m')}}</b></td>
-                    <td>{{ lecon.maitreArme ? lecon.maitreArme : '' }}</td>
-                    <td>{{ lecon.informations ? lecon.informations : '' }}</td>
+                    <td>{{ lecon.maitreArme  }}</td>
+                    <td>{{ lecon.informations }}</td>
                    
                 </tr>
             {% else %}

@@ -322,6 +322,15 @@ class User implements UserInterface
 
          return $this;
      }
+     
+    //  public function addGroupe(Groupe $groupe): self
+    // {
+    //     if (!$this->groupe->contains($groupe)) {
+    //         $this->groupe[] = $groupe;
+    //     }
+
+    //     return $this;
+    // }
 
 
      /**

@@ -4,7 +4,7 @@ easy_admin:
         User:
             class: App\Entity\User
             list: 
-                fields: ['username','groupe']
+                fields: ['Id','username','groupe']
             form:
                 fields:
                     - {property : 'username'}
@@ -29,3 +29,4 @@ easy_admin:
             class: App\Entity\Lecon
         UserArbitre:
             class: App\Entity\UserArbitre
+        
