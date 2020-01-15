@@ -7,7 +7,6 @@ use App\Entity\Lecon;
 use App\Form\LeconType;
 use App\Entity\Competitions;
 use App\Entity\Entrainement;
-use App\Actions\ActionsProject;
 use App\Entity\CompetitionsUser;
 use App\Entity\EntrainementUser;
 use App\Form\CompetitionsUserType;
@@ -28,9 +27,9 @@ class MainController extends AbstractController
      */
     public function index(Request $request, ObjectManager $manager)
     {
-        $manager->getRepository(Entrainement::class);
-        $actionsProject = new ActionsProject();
-        $entrainement = $actionsProject->compareDateEntrainement($manager);
+        //$manager->getRepository(Entrainement::class);
+       
+        $entrainement = $manager->getRepository(Entrainement::class)->compareDateEntrainement($manager);
         if(!$entrainement){
             $entrainement[0] = false;
         }else{
@@ -71,7 +70,7 @@ class MainController extends AbstractController
             }
             $leconEntrainement = new Lecon();
             $userG= $manager->getRepository(User::class);
-            $userMaitreArmes = $actionsProject->getMaitreArmes($userG);
+            $userMaitreArmes = $userG->getMaitreArmes($userG);
             $formLecon = $this->createForm(LeconType::class, $leconEntrainement, array(
                 'maitreArmes' => $userMaitreArmes,
             ));
@@ -79,7 +78,7 @@ class MainController extends AbstractController
             //Insertion Lecon
             if($formLecon->isSubmitted() && $formLecon->isValid()){
 
-                $leconEntrainement->setMaitreArme($leconEntrainement->getRawMaitre()->getId());
+                $leconEntrainement->setMaitreArme($formLecon->getViewData()->getRawMaitre());
                 $leconEntrainement->setEntrainement($entrainement[0]);
                 $leconEntrainement->setUser($this->getUser());
                 $leconEntrainement->setPresent(true);
@@ -133,9 +132,9 @@ class MainController extends AbstractController
      */
     public function mesCompetitions(Request $request, ObjectManager $manager){
         
-        $actions = new ActionsProject();
+       
         $element = $manager->getRepository(Competitions::class);
-        $competitionsRevolues = $actions->getCompetitionsRevolues($element,$this->getUser());
+        $competitionsRevolues = $element->getCompetitionsRevolues($element,$this->getUser());
         $tableauCompetitionUser = array();
 
         // $val = array($competitionsRevolues[0]->getUsers());

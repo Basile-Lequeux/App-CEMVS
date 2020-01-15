@@ -29,7 +29,6 @@ class EntrainementType extends AbstractType
                 ],
             ])
             ->add('dateEnd',DateTimeType::class,[
-                "data" => new \DateTime(),
                 'date_widget' => "single_text", 
                 'time_widget' => "single_text",
                 'html5' => true,

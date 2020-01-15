@@ -54,13 +54,10 @@ class UserType extends AbstractType
             ->add('dateNaissance', BirthdayType::class, [
                 'attr'=>[
                     'class' => 'custom-select text-center mb-3',
-                    
-
-                    
-                    
+                                       
                 ],
                 'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                    'year' => 'Année', 'month' => 'Mois', 'day' => 'Jour',
                 ] 
 
                 ])

@@ -79,6 +79,11 @@ class User implements UserInterface
      private $lecons;
 
      /**
+      * @ORM\OneToMany(targetEntity="App\Entity\Lecon", mappedBy="maitreArme", orphanRemoval=true)
+      */
+      private $leconsdonnees;
+
+     /**
       * @ORM\ManyToOne(targetEntity="App\Entity\Groupe", inversedBy="users")
       * @ORM\JoinColumn(nullable=false)
       */

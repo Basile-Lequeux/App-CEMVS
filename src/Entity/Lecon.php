@@ -19,7 +19,8 @@ class Lecon
     private $id;
 
     /**
-     * @ORM\Column(type="integer", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="leconsdonnees")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $maitreArme;
 
@@ -57,12 +58,12 @@ class Lecon
         return $this->id;
     }
 
-    public function getMaitreArme(): ?int
+    public function getMaitreArme(): ?User
     {
         return $this->maitreArme;
     }
 
-    public function setMaitreArme(int $maitreArme): self
+    public function setMaitreArme(?User $maitreArme): self
     {
         $this->maitreArme = $maitreArme;
 

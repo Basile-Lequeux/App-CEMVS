@@ -32,6 +32,16 @@ class UserRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function getMaitreArmes($element){
+        $role = 'ROLE_MAITRE';
+        $data = $element->createQueryBuilder('u')
+            ->andWhere('u.role = :role')
+            ->setParameter('role', $role)
+            ->getQuery()
+            ->getResult();
+        return $data;
+    }
     
 
     /*

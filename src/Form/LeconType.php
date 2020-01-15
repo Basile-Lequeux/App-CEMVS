@@ -14,7 +14,7 @@ class LeconType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        dump($options['maitreArmes']);
+        //dump($options['maitreArmes']);
         $builder
             ->add('rawMaitre', ChoiceType::class,[
                 'label' => 'Nom du Maitre d\'armes',

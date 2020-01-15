@@ -19,6 +19,22 @@ class CompetitionsRepository extends ServiceEntityRepository
         parent::__construct($registry, Competitions::class);
     }
 
+
+
+
+    public function getCompetitionsRevolues($element,$user)
+    {
+        $dateActuelle = new \DateTime('now');
+        $dateActuelle = $dateActuelle->format('Y-m-d H:i:s');
+        $data = $element->createQueryBuilder('competitions')
+            ->andWhere('competitions.dateEnd <= :dateActuelle')
+            ->setParameter('dateActuelle', $dateActuelle)
+            ->getQuery()
+            ->getResult();
+
+        return $data;
+    }
+
     // /**
     //  * @return Competitions[] Returns an array of Competitions objects
     //  */

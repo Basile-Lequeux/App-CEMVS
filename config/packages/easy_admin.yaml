@@ -1,14 +1,18 @@
 # config/packages/easy_admin.yaml
 easy_admin:
+    formats:
+        date: 'd/m/Y'
     entities:
         User:
             class: App\Entity\User
             list: 
-                fields: ['Id','username','groupe']
+                fields: ['Id','username','groupe','DateNaissance','role']
             form:
                 fields:
                     - {property : 'username'}
                     - {property : 'groupe'}
+                    - {property : 'role'}
+
                 
         Entrainement:
             class: App\Entity\Entrainement
