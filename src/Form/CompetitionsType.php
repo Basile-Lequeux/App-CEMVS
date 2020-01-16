@@ -18,7 +18,7 @@ class CompetitionsType extends AbstractType
             'date_widget' => "single_text", 
             'time_widget' => "single_text",
             'html5' => true,
-            'label' => 'Debut de l\'entrainement (Date et Heure)',
+            'label' => 'Debut de la compétition (Date et Heure)',
             'attr'=>[
                 'style'=>'margin-left: 40%;',
             ],
@@ -27,7 +27,7 @@ class CompetitionsType extends AbstractType
             'date_widget' => "single_text", 
             'time_widget' => "single_text",
             'html5' => true,
-            'label' => 'Fin de l\'entrainement (Date et Heure)',
+            'label' => 'Fin de la compétition (Date et Heure)',
             'attr'=>[
                 'style'=>'margin-left: 40%;',
             ],    

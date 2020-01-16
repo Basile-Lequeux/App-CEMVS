@@ -19,6 +19,8 @@ class CompetitionsUserRepository extends ServiceEntityRepository
         parent::__construct($registry, CompetitionsUser::class);
     }
 
+  
+
     // /**
     //  * @return CompetitionsUser[] Returns an array of CompetitionsUser objects
     //  */

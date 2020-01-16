@@ -58,6 +58,9 @@ class UserType extends AbstractType
                 ],
             ])
             ->add('dateNaissance', BirthdayType::class, [
+                'widget' => "single_text", 
+                "label" => "Date de Naissance",
+                'html5' => true,
                 'attr'=>[
                     'class' => 'custom-select text-center mb-3',
                                        

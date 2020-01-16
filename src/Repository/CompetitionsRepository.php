@@ -22,7 +22,7 @@ class CompetitionsRepository extends ServiceEntityRepository
 
 
 
-    public function getCompetitionsRevolues($element,$user)
+    public function getCompetitionsRevolues($element)
     {
         $dateActuelle = new \DateTime('now');
         $dateActuelle = $dateActuelle->format('Y-m-d H:i:s');
@@ -33,6 +33,18 @@ class CompetitionsRepository extends ServiceEntityRepository
             ->getResult();
 
         return $data;
+    }
+
+    public function getTireur($user)
+    {
+      
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.users <= :tireur')
+            ->setParameter('tireur', $user)
+            ->getQuery()
+            ->getResult();
+
+       
     }
 
     // /**

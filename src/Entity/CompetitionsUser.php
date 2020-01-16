@@ -32,6 +32,10 @@ class CompetitionsUser
      * @ORM\JoinColumn(nullable=false)
      */
     private $competition;
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
 
     public function getId(): ?int
     {

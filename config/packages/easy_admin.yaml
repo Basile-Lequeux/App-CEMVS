@@ -6,7 +6,7 @@ easy_admin:
         User:
             class: App\Entity\User
             list: 
-                fields: ['Id','username','groupe','DateNaissance','nom','prenom']
+                fields: ['Id','username','groupe','DateNaissance','nom','prenom','CategorieAge']
             form:
                 fields:
                     - {property : 'username'}
