@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Competitions;
+use App\Entity\CompetitionsUser;
 use App\Form\CompetitionsType;
+use App\Form\CompetitionsUserType;
 use App\Repository\CompetitionsRepository;
+use App\Repository\CompetitionsUserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/competitions")
- * @Security("is_granted('ROLE_ADMIN')")
+ * @Security("is_granted(['ROLE_ADMIN','ROLE_TIREUR','ROLE_MAITRE'])")
  */
 class CompetitionsController extends AbstractController
 {
@@ -96,4 +99,10 @@ class CompetitionsController extends AbstractController
 
         return $this->redirectToRoute('competitions_index');
     }
+
+
+
+
+
+
 }

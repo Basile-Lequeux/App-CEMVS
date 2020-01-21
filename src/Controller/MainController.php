@@ -116,7 +116,7 @@ class MainController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $competitionUser->setUser($this->getUser());
 
-            $competitionUser->getCompetition()->setParticipants($competitionUser->getCompetition()->getParticipants()+1);
+            // $competitionUser->getCompetition()->setParticipants($competitionUser->getCompetition()->getParticipants()+1);
             $manager->persist($competitionUser);
             $manager->flush();
             $this->addFlash('succes','Vous vous êtes bien inscrit à une compétition');
@@ -130,19 +130,38 @@ class MainController extends AbstractController
              foreach($competitions[$i]->getUsers() as $val)
             {
 
-               if ($val->getUser() == $this->getUser()) 
-            {           
-                array_push($tableCompetitionInscrit, $competitions[$i]);
-            }
+                if ($val->getUser() == $this->getUser()) 
+                {           
+                    array_push($tableCompetitionInscrit, $competitions[$i]);
+                }
               
         
+            }
         }
-    }
- 
+        $test = array();
+        for ($i=0; $i <sizeof($competitions) ; $i++) 
+        { 
+             foreach($competitions[$i]->getUsers() as $val)
+            {
+                
 
+                if ($val->getUser() == $this->getUser()) 
+                {           
+                    array_push($test, $val->getid());
+                }
+              
+        
+            }
+        }
+
+        
+    
         return $this->render('main/listCompetitions.html.twig',[
             'competitions' => array_diff($competitions, $tableCompetitionInscrit),
             'competitionInscrit' => $tableCompetitionInscrit,
+            'test' => $test,
+            
+            
             
          ]);
     }
@@ -174,6 +193,7 @@ class MainController extends AbstractController
 
         return $this->render('main/mesCompetitions.html.twig',[
             'competitions' => $tableauCompetitionUser,
+            
          ]);
     }
     /**
@@ -213,5 +233,28 @@ class MainController extends AbstractController
             'lecons' => $lecons,
          ]);
     }
+
+
+    /**
+     * @Route("/desinscrire/{id}", name="competitions_desinscrire", methods={"DELETE"})
+     */
+
+    public function desinscrire(Request $request, CompetitionsUser $competitionUser)
+    {
+        if ($this->isCsrfTokenValid('delete'.$competitionUser->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($competitionUser);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute("list_competitions");
+    }
+
+
+
+
+
+
+
 }
 

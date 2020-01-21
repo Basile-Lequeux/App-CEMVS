@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+
 
 class CompetitionsType extends AbstractType
 {
@@ -55,6 +57,15 @@ class CompetitionsType extends AbstractType
                     'class'=>'text-center',
                 ]
             ])
+            ->add('participants',NumberType::class,[
+                "label" => "Nombre des participants totaux de la compétition",
+                "attr"=>[
+                    'class'=>'text-center',
+                ]
+                
+            
+            ])
+
             ->add('categorieAge',ChoiceType::class,[
                 "choices" => [
                     'M5 (≤ 5ans)' => 'M5',
