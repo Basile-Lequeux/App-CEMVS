@@ -9,7 +9,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Nom</th>
                     <th>Date de Debut</th>
                     <th>Date de Fin</th>
                     <th>Arme</th>
@@ -22,7 +22,7 @@
             <tbody>
             {% for competition in competitions %}
                 <tr>
-                    <td>{{ competition.id }}</td>
+                    <td>{{ competition.Name }}</td>
                     <td>{{ competition.dateStart ? competition.dateStart|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ competition.dateEnd ? competition.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ competition.arme }}</td>

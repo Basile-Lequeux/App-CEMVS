@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use App\Entity\Groupe;
 use App\Entity\UserArbitre;
-use App\Entity\UserArme;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -26,11 +25,6 @@ class AdminFixture extends Fixture
        
         $fgroupe = new groupe();
         $fgroupe->setNom('fgroupe');
-
-        //arme
-        $armef = new UserArme();
-        $armef->setarme('armef');
-
 
 
         //user arbitre

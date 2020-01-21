@@ -82,9 +82,6 @@
                     {% endif %}
 
                     {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item">
-                            <a class="nav-link" href="{{ path('user_arme_index')}}">Gestion Armes</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{path('users_index')}}">Gestion Utilisateurs</a>
                         </li>

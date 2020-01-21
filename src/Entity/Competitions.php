@@ -53,9 +53,17 @@ class Competitions
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Name;
+
+
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->Arbitre = new ArrayCollection();
     }
 
     public function __toString()
@@ -170,5 +178,21 @@ class Competitions
 
         return $this;
     }
+
+    public function getName(): ?string
+    {
+        return $this->Name;
+    }
+
+    public function setName(string $Name): self
+    {
+        $this->Name = $Name;
+
+        return $this;
+    }
+
+
+      
+    
 
 }

@@ -8,7 +8,7 @@
 
 
             {% for competition in competitionInscrit %}
-            {# {{dump(competition.users[0].id)}} #}
+            {# {{dump(competition.users[0].id)}} #} 
                 
                     <div class="col-md-4 mt-5">
                         <div class="card">
@@ -16,7 +16,7 @@
                                 Du <b><i>{{competition.dateStart|date('d-m-Y H:m')}}</i></b> au <b><i>{{competition.dateEnd|date('d-m-Y H:m')}}</i></b>
                             </div>
                             <div class="card-body text-center">
-                                <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">Competition N°{{competition.id}}</h5>
+                                <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">{{competition.Name}}</h5>
                                 <p class="card-text">Catégorie : <b>{{competition.categorieAge}}</b></p>
                                 <p class="card-text">Nbr de Partcipants: <b>{{competition.participants}}</b></p>
                                 <p class="card-text">Blason conseillé: <b>{{competition.blason}}</b></p>
@@ -47,7 +47,7 @@
                                 Du <b><i>{{competition.dateStart|date('d-m-Y H:m')}}</i></b> au <b><i>{{competition.dateEnd|date('d-m-Y H:m')}}</i></b>
                             </div>
                             <div class="card-body text-center">
-                                <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">Competition N°{{competition.id}}</h5>
+                                <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">{{competition.Name}}</h5>
                                 <p class="card-text">Catégorie : <b>{{competition.categorieAge}}</b></p>
                                 <p class="card-text">Nbr de Partcipants: <b>{{competition.participants}}</b></p>
                                 <p class="card-text">Blason conseillé: <b>{{competition.blason}}</b></p>

@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Groupe;
-use App\Entity\UserArme;
 use App\Entity\UserArbitre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -132,22 +131,7 @@ class UserType extends AbstractType
                     return $groupe->getNom();
                 }
                 
-            ))
-            ->add('arme', EntityType::class, array(
-                'label' => 'Arme de l\'utilisateur',
-                'class' => UserArme::class,
-                'multiple' => false,
-                'expanded' => false,
-                'attr'=>[
-                    'class' => 'custom-select form-control text-center mb-3',
-                    'style' => 'background-color:#fff;font-size:15px;'
-                ],
-                'choice_label' => function ($groupe) {
-                    return $groupe->getArme();
-                }
-                
-            ))
-            
+            ))          
         ;
     }
 

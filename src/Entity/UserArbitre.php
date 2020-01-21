@@ -28,10 +28,16 @@ class UserArbitre
      */
     private $users;
 
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
     }
+    public function __toString()
+    {
+        return (string) $this->id;
+    }
+
 
     
 
@@ -82,6 +88,5 @@ class UserArbitre
 
         return $this;
     }
-
   
 }

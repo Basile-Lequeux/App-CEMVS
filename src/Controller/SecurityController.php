@@ -50,4 +50,27 @@ class SecurityController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
+    /**
+     * @Route("/edit/{id}", name="user_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, User $user)
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('users_index');
+            
+        }
+        return $this->render('Security/signup.html.twig', [
+            
+            'form' => $form->createView(),
+        ]);
+    }
+
+
 }

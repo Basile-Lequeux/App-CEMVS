@@ -20,6 +20,13 @@ easy_admin:
             class: App\Entity\Entrainement
         Competitions:
             class: App\Entity\Competitions
+            list: 
+                fields: ['id','name','dateStart','dateEnd','participants','CategorieAge']
+            form:
+                fields:
+                    - {property : 'name'}
+                    
+
         CompetitionsUser:
             class: App\Entity\CompetitionsUser
         EntrainementUser:

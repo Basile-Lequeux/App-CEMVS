@@ -65,14 +65,11 @@ class User implements UserInterface
      private $createdAt;
 
      
-
      /**
       * @ORM\OneToMany(targetEntity="App\Entity\UserObjectifs", mappedBy="user", orphanRemoval=true)
       */
      private $objectifs;
-
     
-
      /**
       * @ORM\OneToMany(targetEntity="App\Entity\Lecon", mappedBy="user", orphanRemoval=true)
       */
@@ -93,11 +90,6 @@ class User implements UserInterface
       * @ORM\OneToMany(targetEntity="App\Entity\EntrainementUser", mappedBy="user", orphanRemoval=true)
       */
      private $entrainements;
-
-     /**
-      * @ORM\ManyToOne(targetEntity="App\Entity\UserArme", inversedBy="users")
-      */
-     private $arme;
 
      /**
       * @ORM\Column(type="string", length=255, nullable=true)
@@ -415,17 +407,6 @@ class User implements UserInterface
          return $this;
      }
 
-     public function getArme(): ?UserArme
-     {
-         return $this->arme;
-     }
-
-     public function setArme(?UserArme $arme): self
-     {
-         $this->arme = $arme;
-
-         return $this;
-     }
 
      public function getCategorieAge(): ?string
      {

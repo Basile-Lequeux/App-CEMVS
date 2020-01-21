@@ -16,22 +16,23 @@
                     <th>Blason</th>
                     <th>Groupe</th>
                     <th>Arbitre</th>
-                    <th>Arme</th>
                 </tr>
             </thead>
             <tbody>
             {% for user in users %}
                 <tr>
                     <td>{{ user.id }}</td>
-                    <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ user.username ? user.username : '' }}</td>
-                    <td>{{ user.role ? user.role : '' }}</td>
-                    <td>{{ user.genre ? user.genre : '' }}</td>
-                    <td>{{ user.blason ? user.blason : '' }}</td>
-                    <td>{{ user.groupe.id ? user.groupe.nom : '' }}</td>
-                    <td>{{ user.arbitre.id ? user.arbitre.niveauArbitre : '' }}</td>
-                    <td>{{ user.arme.id ? user.arme.arme : '' }}</td>
+                    <td>{{ user.createdAt|date('d-m-Y H:i:s')}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.role}}</td>
+                    <td>{{user.genre}}</td>
+                    <td>{{user.blason}}</td>
+                    <td>{{user.groupe.nom}}</td>
+                    <td>{{user.arbitre.niveauArbitre}}</td>
                     
+                    <td>
+                    <a type="button" class="btn btn-warning" href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
+                    </td>
                 </tr>
             {% else %}
                 <tr>
