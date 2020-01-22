@@ -23,14 +23,14 @@
             {% for competition in competitions %}
                 <tr>
                     <td>{{ competition.Name }}</td>
-                    <td>{{ competition.dateStart ? competition.dateStart|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ competition.dateEnd ? competition.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ competition.dateStart|date('d-m-Y H:i:s')}}</td>
+                    <td>{{ competition.dateEnd|date('d-m-y H:i:s')}}</td>
                     <td>{{ competition.arme }}</td>
                     <td>{{ competition.participants }}</td>
                     <td>{{ competition.blason }}</td>
                     <td>{{ competition.categorieAge }}</td>
                     <td>
-                        <a type="button" class="btn btn-primary" href="{{ path('competitions_show', {'id': competition.id}) }}">Afficher</a>
+                        {# <a type="button" class="btn btn-primary" href="{{ path('competitions_show', {'id': competition.id}) }}">Afficher</a> #}
                         <a type="button" class="btn btn-warning" href="{{ path('competitions_edit', {'id': competition.id}) }}">Modifier</a>
                     </td>
                 </tr>

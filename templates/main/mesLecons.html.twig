@@ -4,7 +4,31 @@
 
 {% block body %}
    <div class="container">
-        <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des leçons reçues</h1>
+        
+
+        
+  
+        <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des entrainements où vous avez été présent</h1>
+        
+        <table class="table">
+            <tbody>
+            {% for entrainement in entrainements %}
+            {{dump(entrainement)}}
+          
+            
+                {# <tr>
+                    <td>{{ entrainement.entrainements.dateStart|date('l/m/Y') }}</td>
+                     <td>{{ entrainement.entrainements }}</td>  #}
+                      {# {% for lecon in entrainements.entrainements.lecons %}
+                    <td>{{ lecon }}</td> 
+                      {% endfor %}  
+                     #}
+                   
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+            <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des leçons reçues</h1>
 
         <table class="table">
             <thead>
@@ -17,7 +41,7 @@
             <tbody>
             {% for lecon in lecons %}
                 <tr>
-                    <td>Lecon reçue entre le <b>{{lecon.entrainement.dateStart|date('d/m/Y')}}</b> à <b>{{lecon.entrainement.dateStart|date('h-m')}}</b> et <b>{{lecon.entrainement.dateEnd|date('d/m/Y')}}</b> à <b>{{lecon.entrainement.dateEnd|date('h:m')}}</b></td>
+                    <td>Lecon reçue le <b>{{lecon.entrainement.dateStart|localizeddate('full', 'none', 'fr_FR',null, 'cccc d MMMM Y')}}</b> entre <b>{{lecon.entrainement.dateStart|date('H:i')}}</b> et <b>{{lecon.entrainement.dateEnd|date('H:i')}}</b></td>
                     <td>{{ lecon.maitreArme.prenom  }} {{ lecon.maitreArme.nom  }}</td>
                     <td>{{ lecon.informations }}</td>
                    
@@ -28,5 +52,7 @@
                 </tr>
             {% endfor %}
             </tbody>
+            </table>
    </div>
+   
 {% endblock %}

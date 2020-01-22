@@ -227,10 +227,14 @@ class MainController extends AbstractController
      */
     public function mesLecons(Request $request, ObjectManager $manager){
         $lecons = $manager->getRepository(Lecon::class)->findBy(['user'=>$this->getUser()]);
+        $entrainementsPresent = $manager->getRepository(EntrainementUser::class)->findBy(['user'=>$this->getUser()]);
+
+        // dump($entrainementsPresent);die();
         
 
         return $this->render('main/mesLecons.html.twig',[
             'lecons' => $lecons,
+            'entrainements' => $entrainementsPresent,
          ]);
     }
 

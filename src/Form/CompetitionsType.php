@@ -40,6 +40,27 @@ class CompetitionsType extends AbstractType
                 'style'=>'margin-left: 40%;',
             ],    
         ])
+        ->add('categorieAge',ChoiceType::class,[
+            "choices" => [
+                'M5 (≤ 5ans)' => 'M5',
+                'M7 (6 à 7ans)' => 'M7',
+                'M9 (8 à 9ans)' => 'M9',
+                'M11 (10 à 11ans)' => 'M11',
+                'M13 (12 à 13ans)' => 'M13',
+                'M15 (14 à 15ans)' => 'M15',
+                'M17 (16 à 17ans)' => 'M17',
+                'M20 (18 à 20ans)' => 'M20',
+                'Séniors (21 à 39 ans)' => 'Seniors',
+                'Vétérans 1 (40 à 49ans)' => 'Veteran1',
+                'Vétérans 2 (50 à 59ans)' => 'Veteran1',
+                'Vétérans 3 15 (60 à 69ans)' => 'Veteran3',
+                'Vétérans 4 15 (≥ 70 ans)' => 'Veteran4',
+            ],
+            "label" => "Catégorie",
+            "attr"=>[
+                'class'=>'text-center',
+            ]
+        ])
             ->add('arme', ChoiceType::class,[
                 "choices" => [
                     'Sabre' => 'Sabre',
@@ -72,27 +93,7 @@ class CompetitionsType extends AbstractType
             
             ])
 
-            ->add('categorieAge',ChoiceType::class,[
-                "choices" => [
-                    'M5 (≤ 5ans)' => 'M5',
-                    'M7 (6 à 7ans)' => 'M7',
-                    'M9 (8 à 9ans)' => 'M9',
-                    'M11 (10 à 11ans)' => 'M11',
-                    'M13 (12 à 13ans)' => 'M13',
-                    'M15 (14 à 15ans)' => 'M15',
-                    'M17 (16 à 17ans)' => 'M17',
-                    'M20 (18 à 20ans)' => 'M20',
-                    'Séniors (21 à 39 ans)' => 'Seniors',
-                    'Vétérans 1 (40 à 49ans)' => 'Veteran1',
-                    'Vétérans 2 (50 à 59ans)' => 'Veteran1',
-                    'Vétérans 3 15 (60 à 69ans)' => 'Veteran3',
-                    'Vétérans 4 15 (≥ 70 ans)' => 'Veteran4',
-                ],
-                "label" => "Blason conseillé pour la compétition",
-                "attr"=>[
-                    'class'=>'text-center',
-                ]
-            ])
+            
         ;
     }
 

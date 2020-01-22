@@ -6,10 +6,11 @@
         <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Compétitions à venir</h1>
         <div class="row">
 
+        
 
+{# Competition inscrit #}
             {% for competition in competitionInscrit %}
-            {# {{dump(competition.users[0].id)}} #} 
-                
+                       
                     <div class="col-md-4 mt-5">
                         <div class="card">
                             <div class="card-header text-center">
@@ -33,12 +34,7 @@
                         
             {% endfor %}
 
-                                                  
-
-                                                       
-
-
-
+{# Competitions non-inscrit #}
             {% for competition in competitions %}
                 {% if date('now') < competition.dateEnd and competition.categorieAge == app.user.categorieAge %}
                     <div class="col-md-4 mt-5">
@@ -57,9 +53,7 @@
                                         <button type="submit" class="btn btn-primary btn-success btn-block">S'inscrire <i class="fas fa-sign-in-alt"></i></button>
                                     </form>
                                 
-                                
-                           
-                           
+                                     
                             </div>
                         </div>
                     </div>
