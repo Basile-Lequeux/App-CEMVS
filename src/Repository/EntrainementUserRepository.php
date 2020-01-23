@@ -47,4 +47,5 @@ class EntrainementUserRepository extends ServiceEntityRepository
         ;
     }
     */
+
 }

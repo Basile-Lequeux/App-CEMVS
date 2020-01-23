@@ -50,6 +50,8 @@ class AdminFixture extends Fixture
         //user tireur
         $tireurf = new user();
         $tireurf->setUsername('Tireuf');
+        $tireurf->setNom('Tireuf');
+        $tireurf->setPrenom('Tireuf');
         $tireurf->setPassword($this->passwordEncoder->encodePassword($adminf,'azerty'));
         $tireurf->setRole('ROLE_TIREUR');
         $tireurf->setGenre('homme');

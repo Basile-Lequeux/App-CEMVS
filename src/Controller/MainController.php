@@ -221,23 +221,6 @@ class MainController extends AbstractController
          ]);
     }
 
-    /**
-     * @Route("/mesLecons", name="mes_lecons")
-     * @Security("is_granted(['ROLE_ADMIN','ROLE_TIREUR'])")
-     */
-    public function mesLecons(Request $request, ObjectManager $manager){
-        $lecons = $manager->getRepository(Lecon::class)->findBy(['user'=>$this->getUser()]);
-        $entrainementsPresent = $manager->getRepository(EntrainementUser::class)->findBy(['user'=>$this->getUser()]);
-
-        // dump($entrainementsPresent);die();
-        
-
-        return $this->render('main/mesLecons.html.twig',[
-            'lecons' => $lecons,
-            'entrainements' => $entrainementsPresent,
-         ]);
-    }
-
 
     /**
      * @Route("/desinscrire/{id}", name="competitions_desinscrire", methods={"DELETE"})

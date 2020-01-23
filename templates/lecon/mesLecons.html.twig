@@ -11,19 +11,21 @@
         <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des entrainements où vous avez été présent</h1>
         
         <table class="table">
+        <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>lecon</th>
+                    
+                </tr>
+            </thead>
             <tbody>
-            {% for entrainement in entrainements %}
-            {{dump(entrainement)}}
-          
             
-                {# <tr>
-                    <td>{{ entrainement.entrainements.dateStart|date('l/m/Y') }}</td>
-                     <td>{{ entrainement.entrainements }}</td>  #}
-                      {# {% for lecon in entrainements.entrainements.lecons %}
-                    <td>{{ lecon }}</td> 
-                      {% endfor %}  
-                     #}
-                   
+            {% for entrainement in entrainements %}
+                <tr>
+                    <td>{{ entrainement.dateStart|localizeddate('full', 'none', 'fr_FR',null, 'cccc d MMMM Y')}} entre <b>{{entrainement.dateStart|date('H:i')}}</b> et <b>{{entrainement.dateEnd|date('H:i')}}</b></td>
+                            <td>
+                                <a type="buton" class="btn btn-info btn-warning" href="{{ path('new_lecon', {'id': entrainement.id}) }}">J'ai reçu une leçon à cet entrainement</a>
+                            </td>                                                   
                 </tr>
             {% endfor %}
             </tbody>
