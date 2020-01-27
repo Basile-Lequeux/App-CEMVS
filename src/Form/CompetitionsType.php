@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Competitions;
+use App\Entity\CategorieAge;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -10,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 
 class CompetitionsType extends AbstractType
@@ -40,23 +43,11 @@ class CompetitionsType extends AbstractType
                 'style'=>'margin-left: 40%;',
             ],    
         ])
-        ->add('categorieAge',ChoiceType::class,[
-            "choices" => [
-                'M5 (≤ 5ans)' => 'M5',
-                'M7 (6 à 7ans)' => 'M7',
-                'M9 (8 à 9ans)' => 'M9',
-                'M11 (10 à 11ans)' => 'M11',
-                'M13 (12 à 13ans)' => 'M13',
-                'M15 (14 à 15ans)' => 'M15',
-                'M17 (16 à 17ans)' => 'M17',
-                'M20 (18 à 20ans)' => 'M20',
-                'Séniors (21 à 39 ans)' => 'Seniors',
-                'Vétérans 1 (40 à 49ans)' => 'Veteran1',
-                'Vétérans 2 (50 à 59ans)' => 'Veteran1',
-                'Vétérans 3 15 (60 à 69ans)' => 'Veteran3',
-                'Vétérans 4 15 (≥ 70 ans)' => 'Veteran4',
-            ],
+        ->add('CategorieAge', EntityType::class,[
             "label" => "Catégorie",
+            'class' => CategorieAge::class,
+            'multiple' => false,
+            'expanded' => false,
             "attr"=>[
                 'class'=>'text-center',
             ]
@@ -83,14 +74,6 @@ class CompetitionsType extends AbstractType
                 "attr"=>[
                     'class'=>'text-center',
                 ]
-            ])
-            ->add('participants',NumberType::class,[
-                "label" => "Nombre des participants totaux de la compétition",
-                "attr"=>[
-                    'class'=>'text-center',
-                ]
-                
-            
             ])
 
             

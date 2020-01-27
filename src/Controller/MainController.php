@@ -154,12 +154,24 @@ class MainController extends AbstractController
             }
         }
 
+
+        $tableCategorieUser = array();
+
+        
+        foreach ($this->getUser()->getCategorieAge() as $c) 
+        {
+            array_push($tableCategorieUser, $c->getlibelle());
+        }
+        
+        
+
         
     
         return $this->render('main/listCompetitions.html.twig',[
             'competitions' => array_diff($competitions, $tableCompetitionInscrit),
             'competitionInscrit' => $tableCompetitionInscrit,
             'test' => $test,
+            'categorieUser' => $tableCategorieUser,
             
             
             

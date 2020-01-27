@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use App\Entity\Groupe;
 use App\Entity\UserArbitre;
+use App\Entity\CategorieAge;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -48,7 +49,6 @@ class UserType extends AbstractType
                 "choices" => [
                     'Homme' => 'homme',
                     'Femme' => 'femme',
-                    'Autre' => 'autre',
                 ],
                 "label" => "Genre de l'utilisateur",
                 'attr'=>[
@@ -82,42 +82,16 @@ class UserType extends AbstractType
                     'style' => 'background-color:#fff;font-size:15px;'
                 ],
             ])
-            ->add('categorieAge',ChoiceType::class,[
-                "choices" => [
-                    'M5 (≤ 5ans)' => 'M5',
-                    'M7 (6 à 7ans)' => 'M7',
-                    'M9 (8 à 9ans)' => 'M9',
-                    'M11 (10 à 11ans)' => 'M11',
-                    'M13 (12 à 13ans)' => 'M13',
-                    'M15 (14 à 15ans)' => 'M15',
-                    'M17 (16 à 17ans)' => 'M17',
-                    'M20 (18 à 20ans)' => 'M20',
-                    'Séniors (21 à 39 ans)' => 'Seniors',
-                    'Vétérans 1 (40 à 49ans)' => 'Veteran1',
-                    'Vétérans 2 (50 à 59ans)' => 'Veteran1',
-                    'Vétérans 3 15 (60 à 69ans)' => 'Veteran3',
-                    'Vétérans 4 15 (≥ 70 ans)' => 'Veteran4',
-                ],
-                "label" => "Catégorie de l'utilisateur",
-                'attr'=>[
-                    'class' => 'custom-select form-control text-center mb-3',
-                    'style' => 'background-color:#fff;font-size:15px;'
-                ],
+            ->add('CategorieAge', EntityType::class,[
+                "label" => "Catégorie(s)",
+                'class' => CategorieAge::class,
+                'multiple' => true,
+                'expanded' => true,
+                "attr"=>[
+                    'class'=>'text-center',
+                ]
             ])
-            ->add('arbitre', EntityType::class, array(
-                'label' => 'Niveau Arbitre',
-                'class' => UserArbitre::class,
-                'multiple' => false,
-                'expanded' => false,
-                'attr'=>[
-                    'class' => 'custom-select form-control text-center mb-3',
-                    'style' => 'background-color:#fff;font-size:15px;'
-                ],
-                'choice_label' => function ($groupe) {
-                    return $groupe->getNiveauArbitre();
-                }
-                
-            ))
+ 
             ->add('groupe', EntityType::class, array(
                 'label' => 'Groupe de l\'utilisateur',
                 'class' => Groupe::class,

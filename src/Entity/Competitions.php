@@ -43,10 +43,6 @@ class Competitions
      */
     private $blason;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $categorieAge;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CompetitionsUser", mappedBy="competition", orphanRemoval=true)
@@ -57,6 +53,13 @@ class Competitions
      * @ORM\Column(type="string", length=255)
      */
     private $Name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategorieAge", inversedBy="competitions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $CategorieAge;
+
 
 
 
@@ -136,18 +139,6 @@ class Competitions
         return $this;
     }
 
-    public function getCategorieAge(): ?string
-    {
-        return $this->categorieAge;
-    }
-
-    public function setCategorieAge(string $categorieAge): self
-    {
-        $this->categorieAge = $categorieAge;
-
-        return $this;
-    }
-
     /**
      * @return Collection|CompetitionsUser[]
      */
@@ -187,6 +178,18 @@ class Competitions
     public function setName(string $Name): self
     {
         $this->Name = $Name;
+
+        return $this;
+    }
+
+    public function getCategorieAge(): ?CategorieAge
+    {
+        return $this->CategorieAge;
+    }
+
+    public function setCategorieAge(?CategorieAge $CategorieAge): self
+    {
+        $this->CategorieAge = $CategorieAge;
 
         return $this;
     }

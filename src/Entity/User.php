@@ -92,11 +92,6 @@ class User implements UserInterface
      private $entrainements;
 
      /**
-      * @ORM\Column(type="string", length=255, nullable=true)
-      */
-     private $categorieAge;
-
-     /**
       * @ORM\OneToMany(targetEntity="App\Entity\CompetitionsUser", mappedBy="user", orphanRemoval=true)
       */
      private $competitions;
@@ -121,7 +116,11 @@ class User implements UserInterface
       */
      private $prenom;
 
-     
+     /**
+      * @ORM\ManyToMany(targetEntity="App\Entity\CategorieAge", inversedBy="users")
+      */
+     private $CategorieAge;
+
 
      
 
@@ -131,6 +130,8 @@ class User implements UserInterface
          $this->lecons = new ArrayCollection();
          $this->entrainements = new ArrayCollection();
          $this->competitions = new ArrayCollection();
+         $this->categorieAge = new ArrayCollection();
+         $this->CategorieAge = new ArrayCollection();
      }
     
     public function __toString()
@@ -408,18 +409,6 @@ class User implements UserInterface
      }
 
 
-     public function getCategorieAge(): ?string
-     {
-         return $this->categorieAge;
-     }
-
-     public function setCategorieAge(?string $categorieAge): self
-     {
-         $this->categorieAge = $categorieAge;
-
-         return $this;
-     }
-
      /**
       * @return Collection|CompetitionsUser[]
       */
@@ -495,6 +484,32 @@ class User implements UserInterface
      public function setPrenom(string $prenom): self
      {
          $this->prenom = $prenom;
+
+         return $this;
+     }
+
+     /**
+      * @return Collection|CategorieAge[]
+      */
+     public function getCategorieAge(): Collection
+     {
+         return $this->CategorieAge;
+     }
+
+     public function addCategorieAge(CategorieAge $categorieAge): self
+     {
+         if (!$this->CategorieAge->contains($categorieAge)) {
+             $this->CategorieAge[] = $categorieAge;
+         }
+
+         return $this;
+     }
+
+     public function removeCategorieAge(CategorieAge $categorieAge): self
+     {
+         if ($this->CategorieAge->contains($categorieAge)) {
+             $this->CategorieAge->removeElement($categorieAge);
+         }
 
          return $this;
      }
