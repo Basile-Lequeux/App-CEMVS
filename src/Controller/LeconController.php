@@ -66,7 +66,7 @@ class LeconController extends AbstractController
     {
         
         $leconEntrainement = new Lecon();
-        $userG= $manager->getRepository(User::class);
+        $userG = $manager->getRepository(User::class);
         $userMaitreArmes = $userG->getMaitreArmes($userG);
         $formLecon = $this->createForm(LeconType::class, $leconEntrainement, array(
             'maitreArmes' => $userMaitreArmes,

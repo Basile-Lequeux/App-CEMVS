@@ -12,11 +12,11 @@
                     <th>Nom</th>
                     <th>Date de Debut</th>
                     <th>Date de Fin</th>
-                    <th>Arme</th>
-                    <th>Nbre Participants</th>
-                    <th>Blason Conseillé</th>
                     <th>Catégorie</th>
-                    <th>actions</th>
+                    <th>Zone</th>
+                    
+
+                
                 </tr>
             </thead>
             <tbody>
@@ -25,10 +25,9 @@
                     <td>{{ competition.Name }}</td>
                     <td>{{ competition.dateStart|date('d-m-Y H:i:s')}}</td>
                     <td>{{ competition.dateEnd|date('d-m-y H:i:s')}}</td>
-                    <td>{{ competition.arme }}</td>
-                    <td>{{ competition.participants }}</td>
-                    <td>{{ competition.blason }}</td>
                     <td>{{ competition.categorieAge }}</td>
+                    <td>{{ competition.zoneArbitre }}</td>
+
                     <td>
                         {# <a type="button" class="btn btn-primary" href="{{ path('competitions_show', {'id': competition.id}) }}">Afficher</a> #}
                         <a type="button" class="btn btn-warning" href="{{ path('competitions_edit', {'id': competition.id}) }}">Modifier</a>

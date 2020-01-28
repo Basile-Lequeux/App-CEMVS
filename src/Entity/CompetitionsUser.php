@@ -32,6 +32,11 @@ class CompetitionsUser
      * @ORM\JoinColumn(nullable=false)
      */
     private $competition;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $role;
     public function __toString()
     {
         return (string) $this->id;
@@ -74,6 +79,18 @@ class CompetitionsUser
     public function setCompetition(?Competitions $competition): self
     {
         $this->competition = $competition;
+
+        return $this;
+    }
+
+    public function getRole(): ?int
+    {
+        return $this->role;
+    }
+
+    public function setRole(int $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }

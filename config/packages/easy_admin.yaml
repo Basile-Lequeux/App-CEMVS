@@ -6,7 +6,7 @@ easy_admin:
         User:
             class: App\Entity\User
             list: 
-                fields: ['Id','username','groupe','DateNaissance','nom','prenom','CategorieAge']
+                fields: ['username','groupe','DateNaissance','prenom','nom','CategorieAge','zoneArbitre']
             form:
                 fields:
                     - {property : 'username'}
@@ -14,6 +14,9 @@ easy_admin:
                     - {property : 'Nom'}
                     - {property : 'prenom'}
                     - {property : 'CategorieAge'}
+                    - {property : 'zoneArbitre'}
+
+
 
 
                 
@@ -22,7 +25,7 @@ easy_admin:
         Competitions:
             class: App\Entity\Competitions
             list: 
-                fields: ['id','name','dateStart','dateEnd','participants','CategorieAge']
+                fields: ['name','dateStart','dateEnd','participants','CategorieAge','zoneArbitre']
             form:
                 fields:
                     - {property : 'name'}
@@ -30,8 +33,8 @@ easy_admin:
                     - {property : 'dateEnd'}
                     - {property : 'participants'}
                     - {property : 'CategorieAge'}
-                    - {property : 'arme'}
-                    - {property : 'blason'}
+                    - {property : 'zoneArbitre'}
+                    
 
                     
 
@@ -48,14 +51,15 @@ easy_admin:
 
         Lecon:
             class: App\Entity\Lecon
-        UserArbitre:
-            class: App\Entity\UserArbitre
         
         CategorieAge:
             class: App\Entity\CategorieAge
             form:
                 fields:
                 - {property : 'libelle'}
+
+        Arbitre:
+            class: App\Entity\Arbitre
 
 
       

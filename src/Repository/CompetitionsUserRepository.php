@@ -19,7 +19,19 @@ class CompetitionsUserRepository extends ServiceEntityRepository
         parent::__construct($registry, CompetitionsUser::class);
     }
 
-  
+    
+
+
+    public function getArbitre($element)
+    {
+        $role = 2; //2 = arbitre
+        $data = $element->createQueryBuilder('u')
+            ->andWhere('u.role = :role')
+            ->setParameter('role', $role)
+            ->getQuery()
+            ->getResult();
+        return $data;
+    }
 
     // /**
     //  * @return CompetitionsUser[] Returns an array of CompetitionsUser objects

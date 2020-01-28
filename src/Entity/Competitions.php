@@ -60,18 +60,23 @@ class Competitions
      */
     private $CategorieAge;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Arbitre", inversedBy="competitions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $zoneArbitre;
 
 
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
-        $this->Arbitre = new ArrayCollection();
+      
     }
 
     public function __toString()
     {
-        return (string) $this->id;
+        return (string) $this->Name;
     }
 
     public function getId(): ?int
@@ -194,8 +199,17 @@ class Competitions
         return $this;
     }
 
+    public function getZoneArbitre(): ?Arbitre
+    {
+        return $this->zoneArbitre;
+    }
 
-      
-    
+    public function setZoneArbitre(?Arbitre $zoneArbitre): self
+    {
+        $this->zoneArbitre = $zoneArbitre;
+
+        return $this;
+    }
+
 
 }

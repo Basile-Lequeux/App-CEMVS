@@ -10,7 +10,6 @@
 
 {# Competition inscrit #}
             {% for competition in competitionInscrit %}
-                       
                     <div class="col-md-4 mt-5">
                         <div class="card">
                             <div class="card-header text-center">
@@ -19,22 +18,65 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">{{competition.Name}}</h5>
                                 <p class="card-text">Catégorie : <b>{{competition.categorieAge}}</b></p>
-                                <p class="card-text">Nbr de Partcipants: <b>{{competition.participants}}</b></p>
-                                <p class="card-text">Blason conseillé: <b>{{competition.blason}}</b></p>
+                                {# {% if competition.users|length >= 1 %} #}
+
+
+                                {% set tireur = 0 %}
+                                {% set arbitre = 0 %}
+                                {% set arbitreManquant = 0 %}
+                          
+                                {% for c in competition.users %}
+
+                                    {% if c.role == 1 %}
+                                    
+                                        {% set tireur = tireur + 1 %}
+                                        
+                                    {% endif %}
+
+                                    {% if c.role == 2 %}
+                                    
+                                        {% set arbitre = arbitre + 1 %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+                                                                        
+                                {% if tireur >= 4 %}
+                                
+                                {% set arbitreManquant =  (tireur // 4) - arbitre %}
+                                                
+                                {% endif %}
+
+                                {% if arbitreManquant > 0 %}
+
+                                <p class="card-text"><b>Attention ! Il manque {{arbitreManquant}} arbitre(s) </b></p>
+                                
+                                {% endif %}
+                                
+
                                 <p class="card-text"><b>Vous êtes inscrit à cette compétition</b></p>
 
-                                
                                 {{ include('competitions/_removeUser_form.html.twig') }}
-                           
-                           
+
                             </div>
                         </div>
                     </div>
+            {% endfor %}
+                                
+                           
+                           
             
                         
-            {% endfor %}
+
+                                    
+                                
+                                
+                         
+                               
+                                
 
 {# Competitions non-inscrit #}
+            
             {% for competition in competitions %}
             {% for c in categorieUser %}
 
@@ -47,8 +89,8 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">{{competition.Name}}</h5>
                                 <p class="card-text">Catégorie : <b>{{competition.categorieAge}}</b></p>
-                                <p class="card-text">Nbr de Partcipants: <b>{{competition.participants}}</b></p>
-                                <p class="card-text">Blason conseillé: <b>{{competition.blason}}</b></p>
+                                
+
                                                         
                                     <form name="competitions_user"  method="post">
                                         <input type="hidden" name="competitions_user[competition]" value="{{competition.id}}" />

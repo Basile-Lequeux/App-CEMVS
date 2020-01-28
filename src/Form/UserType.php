@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Groupe;
-use App\Entity\UserArbitre;
 use App\Entity\CategorieAge;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

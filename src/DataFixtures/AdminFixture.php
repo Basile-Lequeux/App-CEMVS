@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use App\Entity\User;
 use App\Entity\Groupe;
-use App\Entity\UserArbitre;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -29,8 +28,7 @@ class AdminFixture extends Fixture
 
         //user arbitre
         
-        $arbitref = new userArbitre();
-        $arbitref->setNiveauArbitre('niveau');
+        
 
 
         //user admin
@@ -39,7 +37,6 @@ class AdminFixture extends Fixture
         $adminf->setPassword($this->passwordEncoder->encodePassword($adminf,'azerty'));
         $adminf->setRole('ROLE_ADMIN');
         $adminf->setGenre('homme');
-        $adminf->setArbitre($arbitref);
         $adminf->setBlason('Jaune');
         $adminf->setCreatedAt( new \DateTime("2020-01-06 00:00:00"));
         $adminf->setGroupe($fgroupe);
@@ -55,7 +52,6 @@ class AdminFixture extends Fixture
         $tireurf->setPassword($this->passwordEncoder->encodePassword($adminf,'azerty'));
         $tireurf->setRole('ROLE_TIREUR');
         $tireurf->setGenre('homme');
-        $tireurf->setArbitre($arbitref);
         $tireurf->setBlason('Jaune');
         $tireurf->setCreatedAt( new \DateTime("2020-01-06 00:00:00"));
         $tireurf->setGroupe($fgroupe);
@@ -68,7 +64,6 @@ class AdminFixture extends Fixture
         $maitref->setPassword($this->passwordEncoder->encodePassword($adminf,'azerty'));
         $maitref->setRole('ROLE_MAITRE');
         $maitref->setGenre('homme');
-        $maitref->setArbitre($arbitref);
         $maitref->setBlason('Jaune');
         $maitref->setCreatedAt( new \DateTime("2020-01-06 00:00:00"));
         $maitref->setGroupe($fgroupe);
@@ -80,7 +75,6 @@ class AdminFixture extends Fixture
 
 
         $manager->persist($fgroupe);
-        $manager->persist($arbitref);
         $manager->persist($armef);
         $manager->persist($adminf);
         $manager->persist($tireurf);

@@ -109,19 +109,39 @@ class MainController extends AbstractController
         $competitions = $manager->getRepository(Competitions::class)->findAll();
         // $compet = $manager->getRepository(Competitions::class)->getTireur($this->getUser()->getCompetitions());
         
+
+
+        foreach ($competitions as $competition) 
+        {
+            foreach ($competition->getUsers() as $u) 
+            {
+                if ($u->getrole() == 1) 
+                {
+                    // dump($u);
+                }
+                
+            }
+           
+        }
+        
+        // die ();
+
+
         $competitionUser = new CompetitionsUser();
         $form = $this->createForm(CompetitionsUserType::class, $competitionUser);
         $form->handleRequest($request);
         // Inscription compétition
         if($form->isSubmitted() && $form->isValid()){
             $competitionUser->setUser($this->getUser());
+            $competitionUser->setRole(1); // 1=tireur
 
-            // $competitionUser->getCompetition()->setParticipants($competitionUser->getCompetition()->getParticipants()+1);
             $manager->persist($competitionUser);
             $manager->flush();
             $this->addFlash('succes','Vous vous êtes bien inscrit à une compétition');
             return $this->redirectToRoute("list_competitions");
         }
+
+
 
         $tableCompetitionInscrit = array();
 
@@ -138,22 +158,7 @@ class MainController extends AbstractController
         
             }
         }
-        $test = array();
-        for ($i=0; $i <sizeof($competitions) ; $i++) 
-        { 
-             foreach($competitions[$i]->getUsers() as $val)
-            {
-                
-
-                if ($val->getUser() == $this->getUser()) 
-                {           
-                    array_push($test, $val->getid());
-                }
-              
-        
-            }
-        }
-
+       
 
         $tableCategorieUser = array();
 
@@ -162,15 +167,11 @@ class MainController extends AbstractController
         {
             array_push($tableCategorieUser, $c->getlibelle());
         }
-        
-        
-
-        
+                
     
         return $this->render('main/listCompetitions.html.twig',[
             'competitions' => array_diff($competitions, $tableCompetitionInscrit),
             'competitionInscrit' => $tableCompetitionInscrit,
-            'test' => $test,
             'categorieUser' => $tableCategorieUser,
             
             

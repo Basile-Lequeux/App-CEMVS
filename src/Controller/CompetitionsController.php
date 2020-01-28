@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Competitions;
 use App\Entity\CompetitionsUser;
-use App\Form\CompetitionsType;
+use App\Form\CompetitionsType;  
 use App\Form\CompetitionsUserType;
 use App\Repository\CompetitionsRepository;
 use App\Repository\CompetitionsUserRepository;

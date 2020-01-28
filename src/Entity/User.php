@@ -97,11 +97,6 @@ class User implements UserInterface
      private $competitions;
 
      /**
-      * @ORM\ManyToOne(targetEntity="App\Entity\UserArbitre", inversedBy="users")
-      */
-     private $arbitre;
-
-     /**
       * @ORM\Column(type="date", nullable=true)
       */
      private $DateNaissance;
@@ -120,6 +115,11 @@ class User implements UserInterface
       * @ORM\ManyToMany(targetEntity="App\Entity\CategorieAge", inversedBy="users")
       */
      private $CategorieAge;
+
+     /**
+      * @ORM\ManyToOne(targetEntity="App\Entity\Arbitre", inversedBy="users")
+      */
+     private $zoneArbitre;
 
 
      
@@ -440,17 +440,6 @@ class User implements UserInterface
          return $this;
      }
 
-     public function getArbitre(): ?UserArbitre
-     {
-         return $this->arbitre;
-     }
-
-     public function setArbitre(?UserArbitre $arbitre): self
-     {
-         $this->arbitre = $arbitre;
-
-         return $this;
-     }
 
      public function getDateNaissance(): ?\DateTimeInterface
      {
@@ -510,6 +499,18 @@ class User implements UserInterface
          if ($this->CategorieAge->contains($categorieAge)) {
              $this->CategorieAge->removeElement($categorieAge);
          }
+
+         return $this;
+     }
+
+     public function getZoneArbitre(): ?Arbitre
+     {
+         return $this->zoneArbitre;
+     }
+
+     public function setZoneArbitre(?Arbitre $zoneArbitre): self
+     {
+         $this->zoneArbitre = $zoneArbitre;
 
          return $this;
      }

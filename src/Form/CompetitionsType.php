@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Competitions;
 use App\Entity\CategorieAge;
+use App\Entity\Arbitre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -52,29 +53,18 @@ class CompetitionsType extends AbstractType
                 'class'=>'text-center',
             ]
         ])
-            ->add('arme', ChoiceType::class,[
-                "choices" => [
-                    'Sabre' => 'Sabre',
-                    'Epée' => 'Epée',
-                    'Fleuret' => 'Fleuret',
-                ],
-                "label" => "Arme nécessaire pour la compétition",
-                "attr"=>[
-                    'class'=>'text-center',
-                ]
-            ])
-            ->add('blason',ChoiceType::class,[
-                "choices" => [
-                    'Blason Jaune' => 'Jaune',
-                    'Blason Rouge' => 'Rouge',
-                    'Blason Bleu' => 'Bleu',
-                    'Blason Vert' => 'Vert', 
-                ],
-                "label" => "Blason conseillé pour la compétition",
-                "attr"=>[
-                    'class'=>'text-center',
-                ]
-            ])
+        ->add('zoneArbitre', EntityType::class,[
+            "label" => "Zone",
+            'class' => Arbitre::class,
+            'multiple' => false,
+            'expanded' => false,
+            "attr"=>[
+                'class'=>'text-center',
+            ]
+        ])
+
+
+
 
             
         ;
