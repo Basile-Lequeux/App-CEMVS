@@ -48,6 +48,12 @@ class Lecon
      */
     private $informations;
 
+
+
+
+    private $listeEntrainement;
+    private $listeTireur;
+
     public function __construct()
     {
         $this->entrainement = new ArrayCollection();
@@ -143,4 +149,30 @@ class Lecon
 
         return $this;
     }
+    
+    public function getListeEntrainement()
+    {
+        return $this->listeEntrainement;
+    }
+
+    public function setListeEntrainement($listeEntrainement = array())
+    {
+        $this->listeEntrainement = $listeEntrainement;
+        return $this;
+    }
+
+    public function getListeTireur()
+    {
+        return $this->listeTireur;
+    }
+
+    public function setListeTireur($listeTireur)
+    {
+        $this->listeTireur = $listeTireur;
+        return $this;
+    }
+
+
 }
+
+

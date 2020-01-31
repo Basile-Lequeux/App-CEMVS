@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Leçons{% endblock %}
+
+{% block body %}
+   <div class="container">
+        
+
+        
+  
+        <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des leçons données</h1>
+        
+        <table class="table">
+        <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Leçon donnée à</th>
+                    <th>Libellé de la leçon</th>
+
+
+                    
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for lecon in leconsDonnees %}
+            <tr>
+
+            <td>
+            {{ lecon.entrainement.dateStart|localizeddate('full', 'none', 'fr_FR',null, 'cccc d MMMM Y')}} entre <b>{{lecon.entrainement.dateStart|date('H:i')}}</b> et <b>{{lecon.entrainement.dateEnd|date('H:i')}}</b>
+            </td>
+
+            <td>
+            {{lecon.user.prenom}} {{lecon.user.nom}}
+            </td>
+
+            <td>
+            {{lecon.informations}}
+            </td>
+
+            </tr>
+            {% endfor %}
+         
+            </table>
+            <td>
+                <a type="buton" class="btn btn-info btn-warning" href="{{ path('new_leconMaitre') }}">Ajouter une leçon</a>
+            </td> 
+
+            <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Liste des leçons données par les autres Maîtres</h1>
+        
+        <table class="table">
+        <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Leçon donnée à</th>
+                    <th>Libellé de la leçon</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+            {% for lecon in lecons %}
+
+            {% if lecon.maitreArme != app.user %}
+            <tr>
+
+            <td>
+            {{ lecon.entrainement.dateStart|localizeddate('full', 'none', 'fr_FR',null, 'cccc d MMMM Y')}} entre <b>{{lecon.entrainement.dateStart|date('H:i')}}</b> et <b>{{lecon.entrainement.dateEnd|date('H:i')}}</b>
+            </td>
+
+            <td>
+            {{lecon.user.prenom}} {{lecon.user.nom}}
+            </td>
+
+            <td>
+            {{lecon.informations}}
+            </td>
+
+            </tr>
+            
+                
+            {% endif %}
+            {% endfor %}
+
+            </tbody>
+            </table>
+
+          </div>
+
+
+
+
+
+{% endblock %}

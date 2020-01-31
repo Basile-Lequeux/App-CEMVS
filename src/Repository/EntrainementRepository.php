@@ -67,6 +67,28 @@ class EntrainementRepository extends ServiceEntityRepository
         }
     }
 
+    public function getEntrainementPasse($element)
+    {
+        $dateActuelle = new \DateTime('now');
+        $dateActuelle = $dateActuelle->format('Y-m-d H:i:s');
+        $data = $element->createQueryBuilder()
+            ->select('r')
+            ->from(Entrainement::class, 'r')
+            ->where('r.dateStart <= :dateActuelle')
+            ->andWhere('r.dateEnd <= :dateActuelle')
+            ->setParameter('dateActuelle', $dateActuelle)
+            ->getQuery()
+            ->getResult();
+        if(sizeof($data)>0){
+            return $data;
+        }else{
+            return false;
+        }
+    }
+
+
+
+
 
 
 }

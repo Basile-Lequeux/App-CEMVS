@@ -107,30 +107,15 @@ class MainController extends AbstractController
     public function listCompetitions(Request $request, ObjectManager $manager){
 
         $competitions = $manager->getRepository(Competitions::class)->findAll();
-        // $compet = $manager->getRepository(Competitions::class)->getTireur($this->getUser()->getCompetitions());
         
 
-
-        foreach ($competitions as $competition) 
-        {
-            foreach ($competition->getUsers() as $u) 
-            {
-                if ($u->getrole() == 1) 
-                {
-                    // dump($u);
-                }
-                
-            }
-           
-        }
-        
-        // die ();
-
+        // Inscription compétition
 
         $competitionUser = new CompetitionsUser();
         $form = $this->createForm(CompetitionsUserType::class, $competitionUser);
         $form->handleRequest($request);
-        // Inscription compétition
+
+        
         if($form->isSubmitted() && $form->isValid()){
             $competitionUser->setUser($this->getUser());
             $competitionUser->setRole(1); // 1=tireur
@@ -149,13 +134,12 @@ class MainController extends AbstractController
         { 
              foreach($competitions[$i]->getUsers() as $val)
             {
-
-                if ($val->getUser() == $this->getUser()) 
+                
+                if ($val->getUser() == $this->getUser() and $val->getrole() == 1) 
                 {           
                     array_push($tableCompetitionInscrit, $competitions[$i]);
                 }
-              
-        
+                      
             }
         }
        
@@ -189,8 +173,6 @@ class MainController extends AbstractController
         $competitionsRevolues = $element->getCompetitionsRevolues($element);
         $tableauCompetitionUser = array();
         
-
-        // $val = array($competitionsRevolues[0]->getUsers());
 
         for($i=0; $i<sizeof($competitionsRevolues); $i++){
             $val = $competitionsRevolues[$i]->getUsers();

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use App\Entity\Groupe;
 use App\Entity\CategorieAge;
+use App\Entity\Arbitre;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -104,7 +105,18 @@ class UserType extends AbstractType
                     return $groupe->getNom();
                 }
                 
-            ))          
+            ))
+            
+            
+            ->add('zoneArbitre', EntityType::class,[
+                "label" => "Niveau d'Arbitrage(s)",
+                'class' => Arbitre::class,
+                'expanded' => true,
+                "attr"=>[
+                    'class'=>'text-center',
+                ]
+            ])
+
         ;
     }
 

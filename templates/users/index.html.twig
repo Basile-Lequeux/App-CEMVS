@@ -8,8 +8,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Date Création</th>
                     <th>Nom Utilisateur</th>
                     <th>Role</th>
                     <th>Genre</th>
@@ -21,14 +19,12 @@
             <tbody>
             {% for user in users %}
                 <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.createdAt|date('d-m-Y H:i:s')}}</td>
                     <td>{{user.username}}</td>
                     <td>{{user.role}}</td>
                     <td>{{user.genre}}</td>
                     <td>{{user.blason}}</td>
                     <td>{{user.groupe.nom}}</td>
-                    <td>{{user.arbitre.niveauArbitre}}</td>
+                    <td>{{user.zoneArbitre}}</td>
                     
                     <td>
                     <a type="button" class="btn btn-warning" href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>

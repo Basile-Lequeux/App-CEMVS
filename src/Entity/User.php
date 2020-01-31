@@ -122,7 +122,7 @@ class User implements UserInterface
      private $zoneArbitre;
 
 
-     
+    
 
      public function __construct()
      {

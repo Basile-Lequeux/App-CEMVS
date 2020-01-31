@@ -6,6 +6,8 @@ use App\Entity\Competitions;
 use App\Entity\CompetitionsUser;
 use App\Form\CompetitionsType;  
 use App\Form\CompetitionsUserType;
+use App\Entity\User;
+use App\Form\ArbitreType;
 use App\Repository\CompetitionsRepository;
 use App\Repository\CompetitionsUserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * @Route("/competitions")
@@ -59,6 +62,7 @@ class CompetitionsController extends AbstractController
      */
     public function show(Competitions $competition): Response
     {
+
         return $this->render('competitions/show.html.twig', [
             'competition' => $competition,
         ]);
@@ -101,8 +105,36 @@ class CompetitionsController extends AbstractController
     }
 
 
+    /**
+     * @Route("/{id}/add_arbitre", name="add_arbitre", methods={"GET","POST"})
+     */
+    public function add_arbitre(Request $request, ObjectManager $manager)
+    {
 
+        $competitionUser = new CompetitionsUser();
+        $userG = $manager->getRepository(User::class);
+        $tireurs = $userG->getTireur($userG);
+        $competitionUser->setlisteArbitre($tireurs);
+        $form = $this->createForm(ArbitreType::class, $competitionUser);
+        $form->handleRequest($request);
 
+        $competition = $manager->getRepository(Competitions::class)->findOneBy(['id'=>$request->attributes->get('id')]);
+        
+        
+        if($form->isSubmitted() && $form->isValid()){
 
+            $competitionUser->setUser($form->getViewData()->getListeArbitre());
+            $competitionUser->setCompetition($competition);
+            $competitionUser->setRole(2); // 2=arbitre
 
+            $manager->persist($competitionUser);
+            $manager->flush();
+            return $this->redirectToRoute('competitions_show', array('id' => $request->attributes->get('id')));
+        }
+       
+
+        return $this->render('competitions/addArbitre.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 }

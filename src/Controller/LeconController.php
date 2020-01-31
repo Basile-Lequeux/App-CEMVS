@@ -18,12 +18,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Common\Collections\Collection;
+use App\Form\MaitreLeconType;
 
 
 
 /**
  * @Route("/")
- * @Security("is_granted(['ROLE_ADMIN','ROLE_TIREUR'])")
+ * @Security("is_granted(['ROLE_ADMIN','ROLE_TIREUR','ROLE_MAITRE'])")
  */
 class LeconController extends AbstractController
 {
@@ -90,10 +91,74 @@ class LeconController extends AbstractController
             "form" => $formLecon->createView(),
 
         ]);
+}
 
-    
+        /**
+        * @Route("/leconMaitre", name = "leconMaitre", methods={"GET","POST"})
+        * @Security("is_granted(['ROLE_MAITRE'])")
+        */
+        public function leconMaitre(Request $request, ObjectManager $manager)
+        
+        {
+            $leconsDonnees = $manager->getRepository(Lecon::class)->findBy(['maitreArme'=>$this->getUser()]);
+            $lecons = $manager->getRepository(Lecon::class)->findAll();
+
+            
+
+            return $this->render('lecon/leconMaitre.html.twig',[
+                'leconsDonnees' => $leconsDonnees,
+                'lecons' => $lecons,
+                
+             ]);
+        }
+
+
+
+        /**
+        * @Route("/newLeconMaitre", name = "new_leconMaitre", methods={"GET","POST"})
+        * @Security("is_granted(['ROLE_MAITRE'])")
+        */
+        public function newLeconMaitre(Request $request, ObjectManager $manager)
+        
+        {
+            $lecon = new Lecon();
+
+
+            $entrainements = $manager->getRepository(Entrainement::class)->getEntrainementPasse($manager);
+            $userG = $manager->getRepository(User::class);
+            $tireurs = $userG->getTireur($userG);
+
+            $lecon->setListeTireur($tireurs);
+            $lecon->setListeEntrainement($entrainements);
+            
+            $form = $this->createForm(MaitreLeconType::class, $lecon);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) 
+            {
+                
+                $lecon->setEntrainement($form->getViewData()->getListeEntrainement());
+                $lecon->setMaitreArme($this->getUser());
+                $lecon->setUser($form->getViewData()->getListeTireur());
+                $lecon->setPresent(true);
+
+                $manager = $this->getDoctrine()->getManager();
+                $manager->persist($lecon);
+                $manager->flush();
+
+                return $this->redirectToRoute('leconMaitre');
+
+            }
+
+            return $this->render('lecon/newLeconMaitre.html.twig', [
+                'form' => $form->createView(),
+            ]);
+        }
 
      
-    }
+
+
+
+    
 
 }

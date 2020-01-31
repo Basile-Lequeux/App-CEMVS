@@ -55,7 +55,7 @@
                                 
 
                                 <p class="card-text"><b>Vous êtes inscrit à cette compétition</b></p>
-
+                                
                                 {{ include('competitions/_removeUser_form.html.twig') }}
 
                             </div>
@@ -106,5 +106,8 @@
             {% endfor %}
 
         </div>
-    </div>
+    
+
+    {% include "competitions/arbitrage.html.twig" %}
+
 {% endblock %}

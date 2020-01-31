@@ -1,5 +1,16 @@
-<form method="post" action="{{ path('competitions_desinscrire', {'id': competition.users[0].id}) }}" onsubmit="return confirm('Voulez-vous vraiment vous désinscrire de cette compétition');">
+
+{% set compet = 0 %}
+{% for u in competition.users %}
+    {% if u.user == app.user and u.role == 1 %}
+    {% set compet = u.id %}
+    {% endif %}
+    
+{% endfor %}
+
+
+
+<form method="post" action="{{ path('competitions_desinscrire', {'id': compet}) }}" onsubmit="return confirm('Voulez-vous vraiment vous désinscrire de cette compétition');">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ competition.users[0].id) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ compet) }}">
     <button class="btn btn-block btn-danger">Se désinscrire</button>
 </form>

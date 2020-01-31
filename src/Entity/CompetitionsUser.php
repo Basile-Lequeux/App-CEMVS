@@ -37,6 +37,11 @@ class CompetitionsUser
      * @ORM\Column(type="smallint")
      */
     private $role;
+
+
+
+    private $listeArbitre;
+
     public function __toString()
     {
         return (string) $this->id;
@@ -92,6 +97,17 @@ class CompetitionsUser
     {
         $this->role = $role;
 
+        return $this;
+    }
+
+    public function getListeArbitre()
+    {
+        return $this->listeArbitre;
+    }
+
+    public function setListeArbitre($listeArbitre)
+    {
+        $this->listeArbitre = $listeArbitre;
         return $this;
     }
 

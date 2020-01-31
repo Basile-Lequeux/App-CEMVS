@@ -42,6 +42,16 @@ class UserRepository extends ServiceEntityRepository
             ->getResult();
         return $data;
     }
+
+    public function getTireur($element){
+        $role = 'ROLE_TIREUR';
+        $data = $element->createQueryBuilder('u')
+            ->andWhere('u.role = :role')
+            ->setParameter('role', $role)
+            ->getQuery()
+            ->getResult();
+        return $data;
+    }
     
 
     /*
