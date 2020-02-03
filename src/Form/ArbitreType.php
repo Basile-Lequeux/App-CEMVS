@@ -23,6 +23,10 @@ class ArbitreType extends AbstractType
             {
                 $nomTireur = $tireur->getPrenom();
                 $nomTireur .= ' '.$tireur->getNom();
+                if ($tireur->getZoneArbitre()) 
+                {
+                    $nomTireur .= '----' .$tireur->getZoneArbitre();            
+                }
 
                 return $nomTireur;  
             },

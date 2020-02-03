@@ -42,6 +42,8 @@ class CompetitionsUser
 
     private $listeArbitre;
 
+    private $participants;
+
     public function __toString()
     {
         return (string) $this->id;
@@ -108,6 +110,17 @@ class CompetitionsUser
     public function setListeArbitre($listeArbitre)
     {
         $this->listeArbitre = $listeArbitre;
+        return $this;
+    }
+
+    public function getParticipants()
+    {
+        return $this->participants;
+    }
+
+    public function setParticipants($participants)
+    {
+        $this->participants = $participants;
         return $this;
     }
 

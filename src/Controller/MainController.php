@@ -151,13 +151,15 @@ class MainController extends AbstractController
         {
             array_push($tableCategorieUser, $c->getlibelle());
         }
-                
+        
+
+        $competitionArbitre = $manager->getRepository(CompetitionsUser::class)->getCompetitionArbitre($this->getUser());
     
         return $this->render('main/listCompetitions.html.twig',[
             'competitions' => array_diff($competitions, $tableCompetitionInscrit),
             'competitionInscrit' => $tableCompetitionInscrit,
             'categorieUser' => $tableCategorieUser,
-            
+            'competitionArbitre' => $competitionArbitre,
             
             
          ]);
@@ -174,18 +176,21 @@ class MainController extends AbstractController
         $tableauCompetitionUser = array();
         
 
-        for($i=0; $i<sizeof($competitionsRevolues); $i++){
-            $val = $competitionsRevolues[$i]->getUsers();
-            if(sizeof($val)){
-                if($val[$i]->getUser()->getUsername() == $this->getUser()->getUsername()){
-                    array_push($tableauCompetitionUser,$competitionsRevolues[$i]);
+        foreach ($competitionsRevolues as $competition) 
+        {
+            if ($competition) 
+            {
+                foreach ($competition->getUsers() as $c) 
+                {
+                    if ($c->getUser()->getId() == $this->getUser()->getId() and $c->getRole() == 1) 
+                    {
+                        array_push($tableauCompetitionUser,$competition);                  
+                    }
                 }
-            }else{
-                $tableauCompetitionUser = false ;
+               
             }
         }
-        
-
+              
         return $this->render('main/mesCompetitions.html.twig',[
             'competitions' => $tableauCompetitionUser,
             
@@ -197,11 +202,19 @@ class MainController extends AbstractController
      */
     public function mesCompetitionsView(Request $request, ObjectManager $manager, $id){
         $competition = $manager->getRepository(CompetitionsUser::class)->findOneBy(['competition'=> $id]);
+        $competition->setParticipants($competition->getCompetition()->getparticipants());
+
+
+
+
         $form = $this->createForm(CompetitionsUserType::class, $competition, array(
             'update'=>true,
         ));
-        $form->handleRequest($request);
+        
+        $form->handleRequest($request); 
         if($form->isSubmitted() && $form->isValid()){
+
+            $competition->getcompetition()->setParticipants($form->getViewData()->getParticipants());
             if($competition->getPlace() < $competition->getCompetition()->getParticipants()){
                 $manager->persist($competition);
                 $manager->flush();
@@ -231,11 +244,6 @@ class MainController extends AbstractController
 
         return $this->redirectToRoute("list_competitions");
     }
-
-
-
-
-
 
 
 }

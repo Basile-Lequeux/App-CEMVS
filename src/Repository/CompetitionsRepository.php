@@ -42,10 +42,10 @@ class CompetitionsRepository extends ServiceEntityRepository
             ->andWhere('c.users <= :tireur')
             ->setParameter('tireur', $user)
             ->getQuery()
-            ->getResult();
-
-       
+            ->getResult();    
     }
+
+
 
     // /**
     //  * @return Competitions[] Returns an array of Competitions objects

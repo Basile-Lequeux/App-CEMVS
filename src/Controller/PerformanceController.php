@@ -17,6 +17,7 @@ class PerformanceController extends AbstractController
      */
     public function index(ObjectManager $manager)
     {
+
         $perfActions = new ActionsPerformance();
         $perfCompetitions = $perfActions->getPerfCompetition($manager, $this->getUser());
         $engagement = $perfActions->getEngagement($manager, $this->getUser());

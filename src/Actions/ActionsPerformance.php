@@ -29,8 +29,12 @@ class ActionsPerformance{
 
         $competitionsparticipations = $manager->getRepository(CompetitionsUser::class)->findBy(['user'=>$users]);
         $countParticpation = sizeof($competitionsparticipations);
-
-        $competitionsTotal = $manager->getRepository(Competitions::class)->findBy(['categorieAge' => $users->getCategorieAge()]);
+        foreach ($users->getCategorieAge() as $c) 
+        {
+            $competitionsTotal = $manager->getRepository(Competitions::class)->findBy(['CategorieAge' => $c]);
+            array_push($competitionsTotal, $c);
+        }
+        
         $countTotal = sizeof($competitionsTotal);
 
         array_push($tableEngagement,[$countParticpation,$countTotal]);

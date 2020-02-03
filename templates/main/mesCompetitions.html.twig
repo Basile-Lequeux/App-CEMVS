@@ -12,12 +12,11 @@
                 <div class="col-md-4 mt-5">
                     <div class="card">
                         <div class="card-header text-center">
-                            La compétition a eu lieu du <br><b><i>{{competition.dateStart|date('d-m-Y H:m')}}</i></b> au <b><i>{{competition.dateEnd|date('d-m-Y H:m')}}</i></b>
+                            La compétition a eu lieu le <br><b><i>{{competition.dateStart|localizeddate('full', 'none', 'fr_FR',null, 'cccc d MMMM Y')}}</i></b>
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">Competition N°{{competition.id}}</h5>
+                            <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">Competition : {{competition.name}}</h5>
                             <p class="card-text">Nbre de Partcipants: <b>{{competition.participants}}</b></p>
-                            <p class="card-text">Blason conseillé: <b>{{competition.blason}}</b></p>
                            
                              {% if competition.users[0].place %}
                                 <a type="button" class="btn btn-info" style="color:#fff;">Vous avez terminé {{competition.users[0].place}}ème sur {{competition.participants}} </a>

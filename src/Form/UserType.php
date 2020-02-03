@@ -50,7 +50,7 @@ class UserType extends AbstractType
                     'Homme' => 'homme',
                     'Femme' => 'femme',
                 ],
-                "label" => "Genre de l'utilisateur",
+                "label" => "Sexe de l'utilisateur",
                 'attr'=>[
                     'class' => 'custom-select form-control text-center mb-3',
                     'style' => 'background-color:#fff;font-size:15px;'
@@ -69,19 +69,19 @@ class UserType extends AbstractType
                 ] 
 
                 ])
-            ->add('blason',ChoiceType::class,[
-                "choices" => [
-                    'Blason Jaune' => 'Jaune',
-                    'Blason Rouge' => 'Rouge',
-                    'Blason Bleu' => 'Bleu',
-                    'Blason Vert' => 'Vert',   
-                ],
-                "label" => "Blason de l'utilisateur",
-                'attr'=>[
-                    'class' => 'custom-select form-control text-center mb-3',
-                    'style' => 'background-color:#fff;font-size:15px;'
-                ],
-            ])
+            // ->add('blason',ChoiceType::class,[
+            //     "choices" => [
+            //         'Blason Jaune' => 'Jaune',
+            //         'Blason Rouge' => 'Rouge',
+            //         'Blason Bleu' => 'Bleu',
+            //         'Blason Vert' => 'Vert',   
+            //     ],
+            //     "label" => "Blason de l'utilisateur",
+            //     'attr'=>[
+            //         'class' => 'custom-select form-control text-center mb-3',
+            //         'style' => 'background-color:#fff;font-size:15px;'
+            //     ],
+            // ])
             ->add('CategorieAge', EntityType::class,[
                 "label" => "Catégorie(s)",
                 'class' => CategorieAge::class,

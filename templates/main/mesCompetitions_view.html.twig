@@ -5,12 +5,12 @@
         <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Inscription de mes Resultats à la compétition</h1>
             <div class="card">
                 <div class="card-header text-center">
-                    La compétition a eu lieu du <br><b><i>{{competition.competition.dateStart|date('d-m-Y H:m')}}</i></b> au <b><i>{{competition.competition.dateEnd|date('d-m-Y H:m')}}</i></b>
+                    La compétition a eu lieu du <br><b><i>{{competition.competition.dateStart|localizeddate('full', 'none', 'fr_FR',null, 'cccc d MMMM Y')}}</i></b> au <b><i>{{competition.competition.dateEnd|localizeddate('full', 'none', 'fr_FR',null, 'cccc d MMMM Y')}}</i></b>
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title text-center bg-light" style="padding:10px;">Competition N°{{competition.competition.id}}</h5>
+                    <h5 class="card-title text-center bg-light" style="padding:10px;">Compétition : {{competition.competition.name}}</h5>
                     <p class="card-text">Nbre de Partcipants: <b>{{competition.competition.participants}}</b></p>
-                    <p class="card-text">Blason conseillé: <b>{{competition.competition.blason}}</b></p>
+                    
                     
                 </div>
                 <hr>

@@ -1,10 +1,30 @@
 <h1 class="text-center bg-light mt-5" style="color:#2196f3;padding:20px;border:1px solid #2196f3;">Compétitions à arbitrer</h1>
 <p class="lead text-center">Veuillez demander au secretariat pour vous inscrire en tant qu'arbitre à la competition souhaitée</p>
 
-    {% for competition in competitions %}
 
-            {% if date('now') < competition.dateEnd and competition.categorieAge < app.user.categorieAge[0] and competition.zoneArbitre <= app.user.zoneArbitre %}
+{% for competition in competitionArbitre %}
 
+<div class="col-md-4 mt-5">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                Du <b><i>{{competition.competition.dateStart|date('d-m-Y H:m')}}</i></b> au <b><i>{{competition.competition.dateEnd|date('d-m-Y H:m')}}</i></b>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">{{competition.competition.Name}}</h5>
+                                <p class="card-text">Catégorie : <b>{{competition.competition.categorieAge}}</b></p>
+                                                        
+                                    
+                                
+                                     
+                            </div>
+                        </div>
+                    </div>             
+    
+{% endfor %}
+
+    {# {% for competition in competitions %}
+
+            {% if date('now') < competition.dateEnd and competition.categorieAge < app.user.categorieAge[0] and competition.zoneArbitre <= app.user.zoneArbitre %} 
 
             <div class="col-md-4 mt-5">
                         <div class="card">
@@ -14,17 +34,12 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">{{competition.Name}}</h5>
                                 <p class="card-text">Catégorie : <b>{{competition.categorieAge}}</b></p>
-                                
-                                
-
                                                         
                                     
                                 
                                      
                             </div>
                         </div>
-                    </div>            
-{% endif %}
-{% endfor %}
+                    </div>             #}
 </div>
 </div>

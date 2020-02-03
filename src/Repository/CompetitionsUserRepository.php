@@ -21,7 +21,7 @@ class CompetitionsUserRepository extends ServiceEntityRepository
 
     
 
-
+    //renvoie tous les arbitres d'une competition
     public function getArbitre($element)
     {
         $role = 2; //2 = arbitre
@@ -32,6 +32,23 @@ class CompetitionsUserRepository extends ServiceEntityRepository
             ->getResult();
         return $data;
     }
+
+
+    public function getCompetitionArbitre($user)
+    {
+        $role = 2; //2 = arbitre
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.role = :role')
+            ->setParameter('role', $role)
+            ->andWhere('u.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+        
+    }
+
+
+
 
     // /**
     //  * @return CompetitionsUser[] Returns an array of CompetitionsUser objects

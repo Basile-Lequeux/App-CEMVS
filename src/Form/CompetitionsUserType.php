@@ -17,6 +17,13 @@ class CompetitionsUserType extends AbstractType
             ;
         }else{
             $builder
+            ->add('participants',IntegerType::class,[
+                'label'=> 'Indiquez le nombre de participants si il n\'est pas valide',
+                'attr'=>[
+                    'class' => 'text-center'
+                ],
+                'required'=>false,
+            ])
                 ->add('place',IntegerType::class,[
                     'label'=> 'Indiquez la place à laquelle vous avez fini',
                     'attr'=>[
@@ -24,6 +31,7 @@ class CompetitionsUserType extends AbstractType
                     ],
                     'required'=>true,
                 ])
+                
             ;
         }
     }
