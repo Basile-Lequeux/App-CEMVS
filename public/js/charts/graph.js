@@ -1,32 +1,33 @@
 function getGraphPerformance(datas){
 
-    console.log(datas)
-    let labels = [];
-    let datas1 = [];
-    let datas2 = [];
+    // console.log(datas)
+    // let labels = [];
+    let datas1 = datas[0];
+    let datas2 = datas[1];
+    
 
-    for(let i in datas){
-        datas1.push(datas[i][0]);
-        datas2.push(datas[i][1]);
-        labels.push("Compétition N°"+datas[i][2]);
-    }
+    // for(let i in datas){
+    //     datas1.push(datas[i][0]);
+    //     datas2.push(datas[i][1]);
+    //     labels.push(datas[i][2]);
+    // }
 
-    console.log(datas1)
-    console.log(datas2)
+    // console.log(datas1)
+    // console.log(datas2)
     var ctx = document.getElementById("myChart").getContext("2d");
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-        labels: labels,
+        labels: ['Performances Compétitions'],
         datasets: [
             {
-            label: "Place",
+            label: "Vos Performances",
             backgroundColor: "#3e95cd",
-            data: datas1
+            data: [datas1]
             }, {
-            label: "Participants",
+            label: "Moyenne Tireurs",
             backgroundColor: "#8e5ea2",
-            data: datas2
+            data: [datas2]
             }
         ]
         },
@@ -52,7 +53,7 @@ function getGraphPerformance(datas){
 
 }
 function getGraphEngagement(datas){
-    console.log(datas)
+    // console.log(datas)
     var ctx = document.getElementById("engagement").getContext("2d");
     var myChart =  new Chart(ctx, {
         type: 'pie',
@@ -74,7 +75,7 @@ function getGraphEngagement(datas){
 }
     
 function getGraphAssiduite(datas){
-    console.log(datas)
+    // console.log(datas)
     var ctx = document.getElementById("pie-chart").getContext("2d");
     var myChart =  new Chart(ctx, {
         type: 'pie',

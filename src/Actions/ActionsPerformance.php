@@ -10,16 +10,44 @@ use App\Entity\EntrainementUser;
 
 class ActionsPerformance{
 
-    public function getPerfCompetition($manager,$users){
-        $competitions = $manager->getRepository(CompetitionsUser::class)->findBy(['user'=>$users]);
-        $tabPerfCompetitions = array();
-        $tabPlace = array();
-        $tabParticipants = array();
-        foreach($competitions as $competition){
-            array_push($tabPerfCompetitions, [$competition->getPlace(),$competition->getCompetition()->getParticipants(), $competition->getCompetition()->getId()]);
-        }
+    public function getPerfCompetition($manager,$user){
 
-        return $tabPerfCompetitions;
+        // les competitions Tirées par le tireur
+        $competitionsparticipations = $manager->getRepository(CompetitionsUser::class)->getCompetitionTireur($user); 
+        // dump($competitionsparticipations);
+        // Le nombre de compétitions passées de la categorie du Tireur (si il est surclassé seulement la catégorie la plus basse est prise en compte)
+        $competitionsTotal = $manager->getRepository(Competitions::class)->getCompetitionsRevoluesByCategorie($user->getCategorieAge()[0]); 
+       
+        
+
+        $mParticipants = 0; //moyenne du nombre de participants
+        $mPlace = 0; // moyenne de la place du tireur 
+        $i = 0; // somme des compétitions prise en compte
+
+        foreach($competitionsparticipations as $competition){
+            
+            if ($competition->getplace() != null)
+            {
+                $i += 1;
+                $mParticipants += $competition->getCompetition()->getParticipants(); //somme des partcipants
+                $mPlace += $competition->getPlace(); // somme des tireurs
+                
+            }
+
+            }
+
+            if ($i == 0) 
+            {
+                return 0;    
+            }
+            else 
+            {
+                $mParticipants = $mParticipants / $i; //moyenne
+                $mPlace = $mPlace / $i; //moyenne
+                $assiduite = count($competitionsparticipations) / count($competitionsTotal);
+                
+                return ($mParticipants / $mPlace ) * $assiduite;
+            }
     }
 
     public function getEngagement($manager, $users){
@@ -27,10 +55,14 @@ class ActionsPerformance{
         $countParticpation = 0;
         $countTotal = 0;
 
+
+        
+
         $competitionsparticipations = $manager->getRepository(CompetitionsUser::class)->findBy(['user'=>$users]);
         $countParticpation = sizeof($competitionsparticipations);
         foreach ($users->getCategorieAge() as $c) 
         {
+            
             $competitionsTotal = $manager->getRepository(Competitions::class)->findBy(['CategorieAge' => $c]);
             array_push($competitionsTotal, $c);
         }

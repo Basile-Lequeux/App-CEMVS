@@ -33,7 +33,24 @@ class CompetitionsUserRepository extends ServiceEntityRepository
         return $data;
     }
 
+    public function getTireurCompetition()
+    {
+        $role = 1;
+        $null = 'null';
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.role = :role')
+            ->setParameter('role', $role)
+            ->andWhere('u.place != :null')
+            ->setParameter('null', $null)
+            ->getQuery()
+            ->getResult();
+        return $data;
+    }
 
+
+
+
+    //renvoie les competitions ou le user est un arbitre
     public function getCompetitionArbitre($user)
     {
         $role = 2; //2 = arbitre
@@ -46,6 +63,21 @@ class CompetitionsUserRepository extends ServiceEntityRepository
             ->getResult();
         
     }
+
+    //renvoie les competitions ou le user est un Tireur
+    public function getCompetitionTireur($user)
+    {
+        $role = 1; //2 = arbitre
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.role = :role')
+            ->setParameter('role', $role)
+            ->andWhere('u.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+        
+    }
+
 
 
 

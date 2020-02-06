@@ -12,14 +12,14 @@
                 <div class="col-md-4 mt-5">
                     <div class="card">
                         <div class="card-header text-center">
-                            La compétition a eu lieu le <br><b><i>{{competition.dateStart|localizeddate('full', 'none', 'fr_FR',null, 'cccc d MMMM Y')}}</i></b>
+                            La compétition a eu lieu le <br><b><i>{{competition.competition.dateStart|localizeddate('full', 'none', 'fr_FR',null, 'cccc d MMMM Y')}}</i></b>
                         </div>
                         <div class="card-body text-center">
-                            <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">Competition : {{competition.name}}</h5>
-                            <p class="card-text">Nbre de Partcipants: <b>{{competition.participants}}</b></p>
+                            <h5 class="card-title text-center bg-primary" style="color:#fff;padding:10px;">Competition : {{competition.competition.name}}</h5>
+                            
                            
-                             {% if competition.users[0].place %}
-                                <a type="button" class="btn btn-info" style="color:#fff;">Vous avez terminé {{competition.users[0].place}}ème sur {{competition.participants}} </a>
+                             {% if competition.place %}
+                                <a type="button" class="btn btn-info" style="color:#fff;">Vous avez terminé {{competition.place}}ème sur {{competition.competition.participants}} </a>
                             {% else %}
                                 <a type="button" href="{{path('mes_competitions_view',{'id': competition.id})}}" class="btn btn-btn-warning">Inscire mes résultats</a>
                             {% endif %}

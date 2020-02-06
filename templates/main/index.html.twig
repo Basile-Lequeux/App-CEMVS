@@ -4,13 +4,13 @@
 
 {% block body %}
    <div class="container mt-3">
-   
+        
     {% if entrainement != false %}
         <div class="row">
             <div class="col-md-6">
                 <div class="jumbotron">
                     <h1 class="display-3 text-center">Entrainement en cours <img src="https://static.thenounproject.com/png/16708-200.png" width="50" height="50"></h1>
-                    <p class="lead text-center">Le cours a lieu de <b>{{entrainement.dateStart|date('H:m:s')}}</b> jusqu'a <b>{{entrainement.dateEnd|date('H:m:s')}}</b>.</p>
+                    <p class="lead text-center">Le cours a lieu de <b>{{entrainement.dateStart|date('H:i')}}</b> jusqu'a <b>{{entrainement.dateEnd|date('H:i')}}</b>.</p>
                 
                     <hr class="my-4">
                     {{ form_start(form)}}

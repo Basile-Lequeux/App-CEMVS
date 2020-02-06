@@ -10,6 +10,8 @@
 
 {# Competition inscrit #}
             {% for competition in competitionInscrit %}
+
+            {% if date('now') < competition.dateEnd %}
                     <div class="col-md-4 mt-5">
                         <div class="card">
                             <div class="card-header text-center">
@@ -61,6 +63,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
             {% endfor %}
                                 
                            

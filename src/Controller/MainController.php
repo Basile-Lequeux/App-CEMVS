@@ -27,8 +27,7 @@ class MainController extends AbstractController
      */
     public function index(Request $request, ObjectManager $manager)
     {
-        //$manager->getRepository(Entrainement::class);
-       
+
         $entrainement = $manager->getRepository(Entrainement::class)->compareDateEntrainement($manager);
         if(!$entrainement){
             $entrainement[0] = false;
@@ -59,7 +58,7 @@ class MainController extends AbstractController
                 'users' => $tableUser,
             ));
             $form->handleRequest($request);
-         
+            
 
             if ($form->isSubmitted() && $form->isValid()){
                 $entrainementUser->setEntrainements($entrainement[0]);
@@ -77,7 +76,7 @@ class MainController extends AbstractController
             $formLecon->handleRequest($request);
             //Insertion Lecon
             if($formLecon->isSubmitted() && $formLecon->isValid()){
-
+            
                 $leconEntrainement->setMaitreArme($formLecon->getViewData()->getRawMaitre());
                 $leconEntrainement->setEntrainement($entrainement[0]);
                 $leconEntrainement->setUser($this->getUser());
@@ -170,29 +169,17 @@ class MainController extends AbstractController
      */
     public function mesCompetitions(Request $request, ObjectManager $manager){
         
-       
-        $element = $manager->getRepository(Competitions::class);
-        $competitionsRevolues = $element->getCompetitionsRevolues($element);
-        $tableauCompetitionUser = array();
-        
-
-        foreach ($competitionsRevolues as $competition) 
-        {
-            if ($competition) 
-            {
-                foreach ($competition->getUsers() as $c) 
-                {
-                    if ($c->getUser()->getId() == $this->getUser()->getId() and $c->getRole() == 1) 
-                    {
-                        array_push($tableauCompetitionUser,$competition);                  
-                    }
-                }
-               
-            }
+        $competitions = $manager->getRepository(CompetitionsUser::class)->getCompetitionTireur($this->getUser());
+        if (!$competitions) {
+            $competitions = false;
         }
+    
+
+        
+              
               
         return $this->render('main/mesCompetitions.html.twig',[
-            'competitions' => $tableauCompetitionUser,
+            'competitions' => $competitions,
             
          ]);
     }

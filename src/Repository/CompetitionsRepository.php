@@ -34,6 +34,20 @@ class CompetitionsRepository extends ServiceEntityRepository
 
         return $data;
     }
+    
+    public function getCompetitionsRevoluesByCategorie($categorie)
+    {
+        $dateActuelle = new \DateTime('now');
+        $dateActuelle = $dateActuelle->format('Y-m-d H:i:s');
+        return $this ->createQueryBuilder('competitions')
+            ->andWhere('competitions.dateEnd <= :dateActuelle')
+            ->setParameter('dateActuelle', $dateActuelle)
+            ->andWhere('competitions.CategorieAge <= :categorie')
+            ->setParameter('categorie', $categorie)
+            ->getQuery()
+            ->getResult();
+
+    }
 
     public function getTireur($user)
     {
