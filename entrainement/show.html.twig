@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entrainement{% endblock %}
+
+{% block body %}
+<div class="container">
+   
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entrainement.id }}</td>
+            </tr>
+            <tr>
+                <th>Date Debut</th>
+                <td>{{ entrainement.beginAt ? entrainement.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date Fin</th>
+                <td>{{ entrainement.endAt ? entrainement.endAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Titre de l'évènement</th>
+                <td>{{ entrainement.title }}</td>
+            </tr>
+            <tr>
+                <th>Groupes</th>
+                <td>{% for groupe in entrainement.groupes %}<p>{{groupe.nom}}</p>{% endfor %}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col">
+            <a type="button" class="btn btn-primary btn-block" href="{{ path('entrainement_index') }}">Retour <i class="fas fa-backward"></i></a>
+        </div>
+        <div class="col">
+            <a type="button" class="btn btn-warning btn-block" href="{{ path('entrainement_edit', {'id': entrainement.id}) }}">Modifier <i class="fas fa-edit"></i></a>
+        </div>
+        <div class="col">
+            {{ include('entrainement/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}
